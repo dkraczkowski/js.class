@@ -129,3 +129,15 @@ console.log(pluto.name());//pluto
 console.log(pluto.fed);//true
 ```
 
+isA
+===
+
+js-class provides handy isA method, which tells you whater class is an instance or mixin of passed class.
+```js
+var pluto = new Dog();
+
+console.log(pluto.isA(Dog));//true
+console.log(pluto.isA(Animal));//true
+console.log(pluto.isA(Pet));//true
+console.log(pluto.isA(MyClass));//false
+```
