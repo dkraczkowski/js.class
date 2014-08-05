@@ -105,7 +105,7 @@ To define mixin we need to simply use `mixin` method:
 ```js
 var Pet = Class({
     name: function(name) {
-        if (typeof name === undefined) {
+        if (typeof name === 'undefined') {
             return this.name;
         }
         this.name = name;
