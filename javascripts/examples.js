@@ -26,9 +26,9 @@ console.log('ConstExample.MY_CONST = "otherValue";', ConstExample.MY_CONST);//co
 var Pet = Class({
     name: function(name) {
         if (typeof name === undefined) {
-            return this.name;
+            return this._name;
         }
-        this.name = name;
+        this._name = name;
     }
 });
 var Animal = Class({
