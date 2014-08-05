@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Js.class by dkraczkowski</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Js.class</h1>
+        <p>Javascript OOP library</p>
+        <p class="view"><a href="https://github.com/dkraczkowski/js.class">View the Project on GitHub <small>dkraczkowski/js.class</small></a></p>
+        <ul>
+          <li><a href="https://github.com/dkraczkowski/js.class/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dkraczkowski/js.class/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dkraczkowski/js.class">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="jsclass" class="anchor" href="#jsclass"><span class="octicon octicon-link"></span></a>js.class</h1>
+
+<p>js.class is a library which focuses on simplifying OOP in javascript.
+Features:</p>
+
+<ul>
+<li>easier inheritance model</li>
+<li>isA operator</li>
+<li>statics/constans</li>
+<li>mixins</li>
+</ul><h1>
+<a name="example-class-declaration" class="anchor" href="#example-class-declaration"><span class="octicon octicon-link"></span></a>Example class declaration</h1>
+
+<p>In order to define new class, consider following example</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyClass</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+    <span class="nx">myMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">//your method declaration</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>This corresponds to:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//your constructor goes here</span>
+<span class="p">};</span>
+<span class="nx">MyClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">};</span>
+</pre></div>
+
+<h1>
+<a name="constructors" class="anchor" href="#constructors"><span class="octicon octicon-link"></span></a>Constructors</h1>
+
+<p>Js-class comes with build-in constructor pattern:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyClass</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+    <span class="nx">create</span><span class="o">:</span> <span class="nx">functon</span><span class="p">(</span><span class="nx">param1</span><span class="p">,</span> <span class="nx">param2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">param1</span> <span class="o">=</span> <span class="nx">param1</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">param2</span> <span class="o">=</span> <span class="nx">param2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>This corresponds to:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">param1</span><span class="p">,</span> <span class="nx">param2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">param1</span> <span class="o">=</span> <span class="nx">param1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">param2</span> <span class="o">=</span> <span class="nx">param2</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
+<h1>
+<a name="inheritance" class="anchor" href="#inheritance"><span class="octicon octicon-link"></span></a>Inheritance</h1>
+
+<p>Inheritance in js-class is a brief consider following examples:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyChildClass</span> <span class="o">=</span> <span class="nx">MyClass</span><span class="p">.</span><span class="nx">extend</span><span class="p">({});</span>
+</pre></div>
+
+<p>corresponds to</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">MyChildClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">param1</span><span class="p">,</span> <span class="nx">param2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">MyClass</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">MyChildClass</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
+</pre></div>
+
+<h1>
+<a name="static-and-constans" class="anchor" href="#static-and-constans"><span class="octicon octicon-link"></span></a>Static and constans</h1>
+
+<blockquote>
+<p>Constans will not work in ie &gt;=8 due to lack of Object.define property support</p>
+</blockquote>
+
+<p>Static variables can be easly defined by usage of <code>static</code> function, which accepts literal object.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">StaticExample</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+<span class="p">}).</span><span class="kr">static</span><span class="p">({</span>
+    <span class="nx">myStatic</span><span class="o">:</span> <span class="s1">'myStatic'</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">StaticExample</span><span class="p">.</span><span class="nx">myStatic</span><span class="p">);</span><span class="c1">//myStatic</span>
+<span class="nx">StaticExample</span><span class="p">.</span><span class="nx">myStatic</span> <span class="o">=</span> <span class="s1">'otherValue'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">StaticExample</span><span class="p">.</span><span class="nx">myStatic</span><span class="p">);</span><span class="c1">//otherValue</span>
+</pre></div>
+
+<p>If literal object will contain a key in uppercase js-class will treat a variable as a constans:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">StaticExample</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+<span class="p">}).</span><span class="kr">static</span><span class="p">({</span>
+    <span class="nx">MY_CONST</span><span class="o">:</span> <span class="s1">'const'</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">StaticExample</span><span class="p">.</span><span class="nx">MY_CONST</span><span class="p">);</span><span class="c1">//const</span>
+<span class="nx">StaticExample</span><span class="p">.</span><span class="nx">MY_CONST</span> <span class="o">=</span> <span class="s1">'otherValue'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">StaticExample</span><span class="p">.</span><span class="nx">MY_CONST</span><span class="p">);</span><span class="c1">//const</span>
+</pre></div>
+
+<h1>
+<a name="mixins" class="anchor" href="#mixins"><span class="octicon octicon-link"></span></a>Mixins</h1>
+
+<p>Mixin is a class which contains a combination of methods from other classes
+Its really usefull strategy if you are going to follow DRY methodology.
+To define mixin we need to simply use <code>mixin</code> method:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">Pet</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+    <span class="nx">eat</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">fed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">drink</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">drunk</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">({</span>
+<span class="p">}).</span><span class="nx">mixin</span><span class="p">(</span><span class="nx">Pet</span><span class="p">,</span> <span class="nx">Animal</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">pluto</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">();</span>
+<span class="nx">pluto</span><span class="p">.</span><span class="nx">eat</span><span class="p">();</span>
+<span class="nx">pluto</span><span class="p">.</span><span class="nx">name</span><span class="p">(</span><span class="s1">'pluto'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">name</span><span class="p">());</span><span class="c1">//pluto</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">fed</span><span class="p">);</span><span class="c1">//true</span>
+</pre></div>
+
+<h1>
+<a name="isa" class="anchor" href="#isa"><span class="octicon octicon-link"></span></a>isA</h1>
+
+<p>js-class provides handy isA method, which tells you whater class is an instance or mixin of passed class.</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">pluto</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Dog</span><span class="p">));</span><span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Animal</span><span class="p">));</span><span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">Pet</span><span class="p">));</span><span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pluto</span><span class="p">.</span><span class="nx">isA</span><span class="p">(</span><span class="nx">MyClass</span><span class="p">));</span><span class="c1">//false</span>
+</pre></div>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/dkraczkowski">dkraczkowski</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
