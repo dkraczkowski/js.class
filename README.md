@@ -35,7 +35,7 @@ Js-class comes with build-in constructor pattern:
 
 ```js
 var MyClass = Class({
-    create: functon(param1, param2) {
+    create: function(param1, param2) {
         this.param1 = param1;
         this.param2 = param2;
     }
