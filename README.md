@@ -71,9 +71,8 @@ MyChildClass.prototype = new MyClass();
 
 Static and constans
 ===================
-```
-Constans will not work in ie >=8 due to lack of Object.define property support
-```
+> Constans will not work in ie >=8 due to lack of Object.define property support
+
 
 Static variables can be easly defined by usage of `static` function, which accepts literal object.
 
