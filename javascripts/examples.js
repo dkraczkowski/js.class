@@ -21,7 +21,7 @@ var ConstExample = Class({
     });
 console.log('ConstExample.MY_CONST', ConstExample.MY_CONST);//const
 StaticExample.MY_CONST = 'otherValue';
-console.log('ConstExample.MY_CONST = "otherValue";', CConstExample.MY_CONST);//const
+console.log('ConstExample.MY_CONST = "otherValue";', ConstExample.MY_CONST);//const
 
 var Pet = Class({
     name: function(name) {
