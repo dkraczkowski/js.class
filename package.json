@@ -1,8 +1,15 @@
 {
-    "name": "js.class",
+    "name": "class.js",
     "version": "2.0.1",
-    "description": "JS Class",
-    "private": true,
+    "description": "Class.js simplifies OOP in javascript",
+    "homepage": "http://dkraczkowski.github.io/class.js",
+    "keywords": [
+        "oop",
+        "inheritance",
+        "extend",
+        "mixin"
+    ],
+    "private": false,
     "license": "MIT",
     "scripts": {
         "test": "jasmine-node --verbose --matchall tests"
@@ -12,7 +19,8 @@
         "jasmine-node": "latest",
         "benchmark": "latest"
     },
-    "dependencies": {
-
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dkraczkowski/class.js"
     }
 }
