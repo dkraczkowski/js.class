@@ -2,15 +2,18 @@ js.class
 ========
 
 js.class is a library which focuses on simplifying OOP in javascript.
-Features:
- - easier inheritance model
- - isA operator
- - statics/constans
- - mixins
 
-Example class declaration
+###Features:
+ - super fast!
+ - small footprint, no dependency, 0.2K minimized
+ - works on both browser and node.js
+ - supports: inheritance, statics, constans, mixins
+ - isA
+
+API
 =========================
-In order to define new class, consider following example
+
+###Class declaration
 
 ```js
 var MyClass = Class({
@@ -18,78 +21,27 @@ var MyClass = Class({
 });
 ```
 
-This corresponds to:
-
-```js
-var MyClass = function() {
-    //your constructor goes here
-};
-MyClass.prototype.myMethod = function() {
-};
-```
-
-Constructors
-============
-
-Js-class comes with build-in constructor pattern:
+###Constructor pattern
 
 ```js
 var MyClass = Class({
-    create: function(param1, param2) {
+    create: function(param1, param2) {//this will be called with new keyword
         this.param1 = param1;
         this.param2 = param2;
     }
 });
-```
-This corresponds to:
 
-```js
-var MyClass = function(param1, param2) {
-    this.param1 = param1;
-    this.param2 = param2;
-};
+var instance = new MyClass(1,2);
+console.log(instance.param1);//1
+console.log(instance.param2);//2
 ```
 
-Instance of support
-===================
-js.class does support `instanceof` operator. Consider the following example:
-
-```js
-var MyClass = Class({
-    create: function(param1, param2) {
-        this.param1 = param1;
-        this.param2 = param2;
-    }
-});
-var t = new MyClass();
-
-console.log(t instanceof MyClass);//true
-```
-
-
-Inheritance
-===========
-
-Inheritance in js-class is a brief consider following examples:
-
+###Inheritance
 ```js
 var MyChildClass = MyClass.extend({});
 ```
 
-corresponds to
-
-```js
-var MyChildClass = function(param1, param2) {
-    MyClass.apply(this, arguments);
-};
-MyChildClass.prototype = new MyClass();
-```
-
-Invoking overridden methods
-===========================
-
-We can invoke overridden superclass methods by using parent's class prototype:
-
+###Invoking overridden methods
 ```js
 var MyClass = Class({
     myMethod: function() {};
@@ -101,12 +53,11 @@ var MyChildClass = MyClass.extend({
 });
 ```
 
-Static and constans
-===================
+###Statics and constans
 > Constans will not work in ie >=8 due to lack of Object.define property support
 
 
-Static variables can be easly defined by usage of `static` function, which accepts literal object.
+Static variables can be easy defined by usage of `static` function, which accepts literal object.
 
 ```js
 var StaticExample = Class({
@@ -120,17 +71,17 @@ console.log(StaticExample.myStatic);//otherValue
 
 If literal object will contain a key in uppercase js-class will treat a variable as a constans:
 ```js
-var StaticExample = Class({
+var ConstantExample = Class({
 }).static({
     MY_CONST: 'const'
 });
-console.log(StaticExample.MY_CONST);//const
-StaticExample.MY_CONST = 'otherValue';
-console.log(StaticExample.MY_CONST);//const
+console.log(ConstantExample.MY_CONST);//const
+ConstantExample.MY_CONST = 'otherValue';
+console.log(ConstantExample.MY_CONST);//const
 ```
 
-Mixins
-======
+###Mixins
+
 Mixin is a class which contains a combination of methods from other classes
 Its really usefull strategy if you are going to follow DRY methodology.
 To define mixin we need to simply use `mixin` method:
@@ -161,10 +112,9 @@ console.log(pluto.name());//pluto
 console.log(pluto.fed);//true
 ```
 
-isA
-===
+###isA
 
-js-class provides handy isA method, which tells you whater class is an instance or mixin of passed class.
+js-class provides handy isA method, which tells you whether class is an instance or mixin of passed class.
 ```js
 var pluto = new Dog();
 
@@ -172,4 +122,20 @@ console.log(pluto.isA(Dog));//true
 console.log(pluto.isA(Animal));//true
 console.log(pluto.isA(Pet));//true
 console.log(pluto.isA(MyClass));//false
+```
+
+Instance of support
+===================
+js.class does support `instanceof` operator. Consider the following example:
+
+```js
+var MyClass = Class({
+    create: function(param1, param2) {
+        this.param1 = param1;
+        this.param2 = param2;
+    }
+});
+var t = new MyClass();
+
+console.log(t instanceof MyClass);//true
 ```
