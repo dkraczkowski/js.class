@@ -8,7 +8,7 @@ js.class is a library which focuses on simplifying OOP in javascript.
  - small footprint, no dependency, 0.2K minimized
  - works on both browser and node.js
  - supports: inheritance, statics, constans, mixins
- - isA
+ - typeOf
 
 API
 =========================
@@ -112,9 +112,11 @@ console.log(pluto.name());//pluto
 console.log(pluto.fed);//true
 ```
 
-###isA
+###typeOf
 
-js.class provides handy isA method, which tells you whether class is an instance or mixin of passed class.
+js.class provides handy `typeOf` method in every instance of class,
+the method allows you to determine whather object is a mixin of given class:
+
 ```js
 var pluto = new Dog();
 

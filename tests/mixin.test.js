@@ -42,10 +42,10 @@ describe("Class test", function() {
         expect(typeof flaffy['eat'] === 'function').toBeTruthy();
         expect(typeof flaffy['drink'] === 'function').toBeTruthy();
         expect(typeof flaffy['name'] === 'function').toBeTruthy();
-        expect(flaffy.isA(Animal)).toBeTruthy();
-        expect(flaffy.isA(Pet)).toBeTruthy();
-        expect(flaffy.isA(Dog)).toBeTruthy();
-        expect(flaffy.isA(unusedMixin)).toBeFalsy();
+        expect(flaffy.typeOf(Animal)).toBeTruthy();
+        expect(flaffy.typeOf(Pet)).toBeTruthy();
+        expect(flaffy.typeOf(Dog)).toBeTruthy();
+        expect(flaffy.typeOf(unusedMixin)).toBeFalsy();
 
         flaffy.eat();
         expect(flaffy.hungry).toBeFalsy();
@@ -53,12 +53,12 @@ describe("Class test", function() {
         var ManyOthers = Class({}).mixin(Other, Other2);
 
         var o = new ManyOthers();
-        expect(o.isA(Animal)).toBeFalsy();
-        expect(o.isA(Pet)).toBeFalsy();
-        expect(o.isA(Dog)).toBeFalsy();
-        expect(o.isA(ManyOthers)).toBeTruthy();
-        expect(o.isA(Other)).toBeTruthy();
-        expect(o.isA(Other2)).toBeTruthy();
+        expect(o.typeOf(Animal)).toBeFalsy();
+        expect(o.typeOf(Pet)).toBeFalsy();
+        expect(o.typeOf(Dog)).toBeFalsy();
+        expect(o.typeOf(ManyOthers)).toBeTruthy();
+        expect(o.typeOf(Other)).toBeTruthy();
+        expect(o.typeOf(Other2)).toBeTruthy();
 
     });
 
