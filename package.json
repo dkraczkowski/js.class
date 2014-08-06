@@ -1,8 +1,8 @@
 {
-    "name": "class.js",
+    "name": "js.class",
     "version": "2.0.1",
-    "description": "Class.js simplifies OOP in javascript",
-    "homepage": "http://dkraczkowski.github.io/class.js",
+    "description": "JS.Class simplifies OOP in javascript",
+    "homepage": "http://dkraczkowski.github.io/js.class",
     "keywords": [
         "oop",
         "inheritance",
@@ -21,6 +21,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/dkraczkowski/class.js"
+        "url": "https://github.com/dkraczkowski/js.class"
     }
 }
