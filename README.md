@@ -1,4 +1,4 @@
-class.js
+class.js [![Build Status](https://travis-ci.org/dkraczkowski/class.js.svg?branch=master)](https://travis-ci.org/dkraczkowski/class.js)
 ========
 
 class.js is a library which focuses on simplifying OOP in javascript.
