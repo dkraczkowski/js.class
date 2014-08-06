@@ -1,7 +1,7 @@
-js.class
+class.js
 ========
 
-js.class is a library which focuses on simplifying OOP in javascript.
+class.js is a library which focuses on simplifying OOP in javascript.
 
 ###Features:
  - super fast!
