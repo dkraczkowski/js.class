@@ -3,6 +3,14 @@ describe("Class test", function() {
 
     it("Class - mixins", function() {
 
+        var Other = Class({
+            other: function(){}
+        });
+
+        var Other2 = Class({
+            other2: function() {}
+        });
+
         var Pet = Class({
             name: function() {
                 return 'flaffy';
@@ -41,6 +49,17 @@ describe("Class test", function() {
 
         flaffy.eat();
         expect(flaffy.hungry).toBeFalsy();
+
+        var ManyOthers = Class({}).mixin(Other, Other2);
+
+        var o = new ManyOthers();
+        expect(o.isA(Animal)).toBeFalsy();
+        expect(o.isA(Pet)).toBeFalsy();
+        expect(o.isA(Dog)).toBeFalsy();
+        expect(o.isA(ManyOthers)).toBeTruthy();
+        expect(o.isA(Other)).toBeTruthy();
+        expect(o.isA(Other2)).toBeTruthy();
+
     });
 
 });

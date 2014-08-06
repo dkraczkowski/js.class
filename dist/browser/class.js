@@ -22,15 +22,6 @@
  * THE SOFTWARE.
  *
  **/
-
-/**
- * js-class is a library for easier oop in javascript.
- * It brings you easier class declaration, extension and
- * even it supports mixin as well as an 'isA' operator.
- *
- * IE 8 const functionality will not work here due to lack
- * of Object.defineProperty support.
- */
 var Class = (function() {
     var _supportConsts = typeof Object.defineProperty === 'function';
 
@@ -63,6 +54,8 @@ var Class = (function() {
 
         return (function createClass(self, classBody) {
 
+            var _mixins = [];
+
             var classConstructor = function () {
                 //apply constructor pattern
                 if (typeof this['create'] === 'function' && _preventCreateCall === false) {
@@ -80,17 +73,17 @@ var Class = (function() {
 
             var classPrototype = classConstructor.prototype;
 
-            if (typeof classPrototype.isA === 'undefined') {
-                classPrototype.isA = function(cls) {
+            //if (typeof classPrototype.isA === 'undefined') {
+            classPrototype.isA = function(cls) {
 
-                    if (this instanceof cls) {
-                        return true;
-                    } else if (typeof classPrototype.__mixins !== 'undefined' && classPrototype.__mixins.indexOf(cls) >= 0) {
-                        return true;
-                    }
-                    return false;
-                };
-            }
+                if (this instanceof cls) {
+                    return true;
+                } else if (_mixins.indexOf(cls) >= 0) {
+                    return true;
+                }
+                return false;
+            };
+            //}
 
             //create class body
             for (var prop in classBody) {
@@ -120,8 +113,7 @@ var Class = (function() {
             };
 
             /**
-             * Extends class body by passed mixins. Mixin can be either function
-             * or Class declaration.
+             * Extends class body by passed other class declaration
              * @param {Function} *mixins
              * @returns {Function}
              */
@@ -136,8 +128,7 @@ var Class = (function() {
                             classPrototype[method] = methods[method];
                         }
                     }
-                    classPrototype.__mixins = classPrototype.__mixins || [];
-                    classPrototype.__mixins.push(mixin);
+                    _mixins.push(mixin);
                 }
                 return classConstructor;
             };
