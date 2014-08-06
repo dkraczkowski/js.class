@@ -1,7 +1,7 @@
-class.js [![Build Status](https://travis-ci.org/dkraczkowski/js.class.svg?branch=master)](https://travis-ci.org/dkraczkowski/js.class)
+js.class [![Build Status](https://travis-ci.org/dkraczkowski/js.class.svg?branch=master)](https://travis-ci.org/dkraczkowski/js.class)
 ========
 
-class.js is a library which focuses on simplifying OOP in javascript.
+js.class is a library which focuses on simplifying OOP in javascript.
 
 ###Features:
  - super fast!
@@ -114,7 +114,7 @@ console.log(pluto.fed);//true
 
 ###isA
 
-js-class provides handy isA method, which tells you whether class is an instance or mixin of passed class.
+js.class provides handy isA method, which tells you whether class is an instance or mixin of passed class.
 ```js
 var pluto = new Dog();
 
