@@ -135,7 +135,10 @@ var MyClass = Class({
         this.param2 = param2;
     }
 });
-var t = new MyClass();
+var MyChildClass = MyClass.extend({});
+
+var t = new MyChildClass();
 
 console.log(t instanceof MyClass);//true
+console.log(t instanceof MyChildClass);//true
 ```
