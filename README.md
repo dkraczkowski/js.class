@@ -50,6 +50,22 @@ var MyClass = function(param1, param2) {
 };
 ```
 
+Instance of support
+===================
+js.class does support `instanceof` operator. Consider the following example:
+
+```js
+var MyClass = Class({
+    create: function(param1, param2) {
+        this.param1 = param1;
+        this.param2 = param2;
+    }
+});
+var t = new MyClass();
+
+console.log(t instanceof MyClass);//true
+```
+
 
 Inheritance
 ===========
@@ -67,6 +83,22 @@ var MyChildClass = function(param1, param2) {
     MyClass.apply(this, arguments);
 };
 MyChildClass.prototype = new MyClass();
+```
+
+Invoking overridden methods
+===========================
+
+We can invoke overridden superclass methods by using parent's class prototype:
+
+```js
+var MyClass = Class({
+    myMethod: function() {};
+});
+var MyChildClass = MyClass.extend({
+    myMethod: function() {
+        MyClass.prototype.myMethod.apply(this, arguments);
+    }
+});
 ```
 
 Static and constans
