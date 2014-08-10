@@ -32,10 +32,10 @@
 
         <section id="main_content">
           <h1>
-<a name="classjs-" class="anchor" href="#classjs-"><span class="octicon octicon-link"></span></a>class.js <a href="https://travis-ci.org/dkraczkowski/class.js"><img src="https://travis-ci.org/dkraczkowski/class.js.svg?branch=master" alt="Build Status"></a>
+<a name="jsclass-" class="anchor" href="#jsclass-"><span class="octicon octicon-link"></span></a>js.class <a href="https://travis-ci.org/dkraczkowski/js.class"><img src="https://travis-ci.org/dkraczkowski/js.class.svg?branch=master" alt="Build Status"></a>
 </h1>
 
-<p>class.js is a library which focuses on simplifying OOP in javascript.</p>
+<p>js.class is a library which focuses on simplifying OOP in javascript.</p>
 
 <h3>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features:</h3>
@@ -45,7 +45,7 @@
 <li>small footprint, no dependency, 0.2K minimized</li>
 <li>works on both browser and node.js</li>
 <li>supports: inheritance, statics, constans, mixins</li>
-<li>isA</li>
+<li>typeOf</li>
 </ul><h1>
 <a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
 
@@ -154,9 +154,10 @@ To define mixin we need to simply use <code>mixin</code> method:</p>
 </pre></div>
 
 <h3>
-<a name="isa" class="anchor" href="#isa"><span class="octicon octicon-link"></span></a>isA</h3>
+<a name="typeof" class="anchor" href="#typeof"><span class="octicon octicon-link"></span></a>typeOf</h3>
 
-<p>js-class provides handy isA method, which tells you whether class is an instance or mixin of passed class.</p>
+<p>js.class provides handy <code>typeOf</code> method in every instance of class,
+the method allows you to determine whather object is a mixin of given class:</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">pluto</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">();</span>
 
