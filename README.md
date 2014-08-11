@@ -120,10 +120,10 @@ the method allows you to determine whather object is a mixin of given class:
 ```js
 var pluto = new Dog();
 
-console.log(pluto.isA(Dog));//true
-console.log(pluto.isA(Animal));//true
-console.log(pluto.isA(Pet));//true
-console.log(pluto.isA(MyClass));//false
+console.log(pluto.typeOf(Dog));//true
+console.log(pluto.typeOf(Animal));//true
+console.log(pluto.typeOf(Pet));//true
+console.log(pluto.typeOf(MyClass));//false
 ```
 
 Instance of support
