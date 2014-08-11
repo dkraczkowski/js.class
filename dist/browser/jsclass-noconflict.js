@@ -73,7 +73,7 @@ var JSClass = (function() {
 
             var classPrototype = classConstructor.prototype;
 
-            //if (typeof classPrototype.isA === 'undefined') {
+            /*if (typeof classPrototype.isA === 'undefined') {
             classPrototype.isA = function(cls) {
 
                 if (this instanceof cls) {
@@ -83,7 +83,7 @@ var JSClass = (function() {
                 }
                 return false;
             };
-            //}
+            //}*/
 
             //create class body
             for (var prop in classBody) {
