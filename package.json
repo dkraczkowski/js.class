@@ -1,6 +1,6 @@
 {
     "name": "js.class",
-    "version": "2.1.5",
+    "version": "2.2.1",
     "description": "JS.Class simplifies OOP in javascript",
     "homepage": "http://dkraczkowski.github.io/js.class",
     "keywords": [
@@ -19,7 +19,9 @@
     "author": "Crac",
     "devDependencies": {
         "jasmine-node": "latest",
-        "benchmark": "latest"
+        "benchmark": "latest",
+        "class": "latest",
+        "ee-class": "latest"
     },
     "repository": {
         "type": "git",

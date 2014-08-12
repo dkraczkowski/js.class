@@ -23,7 +23,6 @@
  *
  **/
 var Class = (function() {
-    var _supportConsts = typeof Object.defineProperty === 'function';
 
     function _rewriteStatics(fnc, statics) {
         for (var prop in statics) {
@@ -36,15 +35,36 @@ var Class = (function() {
             }
 
             //check if static is a constant
-            if (_supportConsts && prop === prop.toUpperCase()) {
+            if (prop === prop.toUpperCase()) {
                 Object.defineProperty(fnc, prop, {
                     writable: false,
                     configurable: false,
                     enumerable: true,
                     value: statics[prop]
                 });
+                Object.defineProperty(fnc.prototype, prop, {
+                    writable: false,
+                    configurable: false,
+                    enumerable: true,
+                    value: statics[prop]
+                });
             } else {
-                fnc[prop] = statics[prop];
+                Object.defineProperty(fnc, prop, {
+                    get: function() {
+                        return statics[prop]
+                    },
+                    set: function(val) {
+                        statics[prop] = val;
+                    }
+                });
+                Object.defineProperty(fnc.prototype, prop, {
+                    get: function() {
+                        return statics[prop]
+                    },
+                    set: function(val) {
+                        statics[prop] = val;
+                    }
+                });
             }
         }
     }

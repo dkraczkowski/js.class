@@ -27,9 +27,9 @@ describe("Class test", function() {
         expect(Pet.staticTest).toEqual('pass');
 
 
-        var Dog = Pet.extend({});
-        expect(Dog.CONST_TEST).toEqual(undefined);
-        expect(Dog.staticTest).toEqual(undefined);
+        var dog = new Pet();
+        expect(dog.CONST_TEST).toEqual('constTest');
+        expect(dog.staticTest).toEqual('pass');
     });
 
 });
