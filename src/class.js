@@ -68,7 +68,6 @@ var Class = (function() {
                 _preventCreateCall = true;
                 classConstructor.prototype = new self();
                 _preventCreateCall = false;
-                _rewriteStatics(classConstructor, self);
             }
 
             var classPrototype = classConstructor.prototype;

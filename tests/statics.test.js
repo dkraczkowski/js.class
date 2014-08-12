@@ -28,8 +28,8 @@ describe("Class test", function() {
 
 
         var Dog = Pet.extend({});
-        expect(Dog.CONST_TEST).toEqual('constTest');
-        expect(Dog.staticTest).toEqual('pass');
+        expect(Dog.CONST_TEST).toEqual(undefined);
+        expect(Dog.staticTest).toEqual(undefined);
     });
 
 });

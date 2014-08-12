@@ -26,7 +26,7 @@ var Class = (function() {
     var _supportConsts = typeof Object.defineProperty === 'function';
 
     function _rewriteStatics(fnc, statics) {
-        for (var prop in statics) {
+        for (var prop in statics) {//do not override build-in statics
             if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
                 continue;
             }
@@ -68,7 +68,6 @@ var Class = (function() {
                 _preventCreateCall = true;
                 classConstructor.prototype = new self();
                 _preventCreateCall = false;
-                _rewriteStatics(classConstructor, self);
             }
 
             var classPrototype = classConstructor.prototype;
@@ -123,7 +122,7 @@ var Class = (function() {
                     var mixin = arguments[i];
                     var methods = mixin.prototype;
                     for (var method in methods) {
-                        var buildIn =  method === 'create' || method === 'isA';
+                        var buildIn =  method === 'create' || method === 'typeOf';
                         if (methods.hasOwnProperty(method) && typeof methods[method] === 'function' && !buildIn) {
                             classPrototype[method] = methods[method];
                         }
