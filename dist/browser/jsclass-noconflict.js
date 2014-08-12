@@ -27,7 +27,7 @@ var JSClass = (function() {
 
     function _rewriteStatics(fnc, statics) {
         for (var prop in statics) {
-            if (prop === 'extend' || prop === 'static' || prop === 'isA' || prop === 'mixin' ) {
+            if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
                 continue;
             }
             //do not rewrite objects to statics
@@ -68,13 +68,13 @@ var JSClass = (function() {
                 _preventCreateCall = true;
                 classConstructor.prototype = new self();
                 _preventCreateCall = false;
-                _rewriteStatics(classConstructor, self);
+                //_rewriteStatics(classConstructor, self);
             }
 
             var classPrototype = classConstructor.prototype;
 
-            /*if (typeof classPrototype.isA === 'undefined') {
-            classPrototype.isA = function(cls) {
+
+            classPrototype.typeOf = function(cls) {
 
                 if (this instanceof cls) {
                     return true;
@@ -83,7 +83,7 @@ var JSClass = (function() {
                 }
                 return false;
             };
-            //}*/
+
 
             //create class body
             for (var prop in classBody) {
