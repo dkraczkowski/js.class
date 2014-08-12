@@ -144,3 +144,10 @@ var t = new MyChildClass();
 console.log(t instanceof MyClass);//true
 console.log(t instanceof MyChildClass);//true
 ```
+
+Version History
+===============
+### 2.2.1
+Fixed instance's statics. Now if you change instance's static it will be changed across all other instances of the same class
+### 2.2.0
+Removed behaviour which was copying consts/statics into children class
