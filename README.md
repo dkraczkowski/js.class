@@ -14,6 +14,34 @@ js.class is a library which focuses on simplifying OOP in javascript. Additional
 API
 =========================
 
+###Usage
+####Node.js
+```
+var Class = require('js.class');
+var MyClass = Class({
+    myMethod: function() {} //your method declaration
+});
+```
+####Browser
+#####Normal version
+```html
+<script type="text/javascript" src="dist/browser/class.min.js"></script>
+<script>
+var MyClass = Class({
+    myMethod: function() {} //your method declaration
+});
+</script>
+```
+#####No conflict version:
+```html
+<script type="text/javascript" src="dist/browser/js.class-noconflict.js"></script>
+<script>
+var MyClass = JSClass({
+    myMethod: function() {} //your method declaration
+});
+</script>
+```
+
 ###Class declaration
 
 ```js

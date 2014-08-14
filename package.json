@@ -1,6 +1,6 @@
 {
     "name": "js.class",
-    "version": "2.2.6",
+    "version": "2.2.9",
     "description": "JS.Class simplifies OOP in javascript",
     "homepage": "http://dkraczkowski.github.io/js.class",
     "keywords": [
@@ -11,6 +11,7 @@
         "mixin",
 		"fast"
     ],
+    "main": "./src/js.class.js",
     "private": false,
     "license": "MIT",
     "scripts": {
