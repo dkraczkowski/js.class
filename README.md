@@ -155,12 +155,15 @@ npm test
 ```
 ###Running benchmarks
 ```
-node ./benchmark/class-extend.js
 node ./benchmark/class-declaration.js
+node ./benchmark/class-extend.js
+node ./benchmark/class-mixins.js
 ```
 
 ####Class declaration benchs
 ```
+node ./benchmark/class-declaration.js
+
 class x 75,624 ops/sec ±3.23% (86 runs sampled)
 js.class x 50,721 ops/sec ±9.67% (63 runs sampled)
 klass x 44,743 ops/sec ±8.60% (74 runs sampled)
@@ -169,6 +172,8 @@ ee-class x 25,366 ops/sec ±6.20% (77 runs sampled)
 
 ####Class extension benchs
 ```
+node ./benchmark/class-extend.js
+
 js.class x 126,312 ops/sec ±3.57% (92 runs sampled)
 class x 78,576 ops/sec ±5.05% (85 runs sampled)
 klass x 59,602 ops/sec ±7.94% (76 runs sampled)
@@ -177,19 +182,23 @@ ee-class x 37,730 ops/sec ±4.70% (85 runs sampled)
 
 ####Mixins benchs
 ```
+node ./benchmark/class-mixins.js
+
 js.class x 3,711,831 ops/sec ±42.60% (49 runs sampled)
 class x 659,439 ops/sec ±0.31% (99 runs sampled)
 klass x 253,159 ops/sec ±0.32% (99 runs sampled)
 ee-class x 151,110 ops/sec ±0.66% (98 runs sampled)
 ```
-| Note that only js.class supports typeof method, which allows you to determine whether given object is a mixin of other class.
+| Note that only js.class supports `typeof` method, which allows you to determine whether given object is a mixin of other class.
 
 ####Conclusion
-You can notice that simple class declaration is the fastest in `class` library, but when it comes to using more
+You may notice simple class declaration is the fastest in `class` library, but when it comes to more
 advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.2.5
+Added benchmarks for libraries `class`, `klass`, `ee-class`
 ### 2.2.1
 Fixed instance's statics. Now if you change instance's static it will be changed across all other instances of the same class
 ### 2.2.0
