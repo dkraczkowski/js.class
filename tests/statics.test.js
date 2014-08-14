@@ -1,4 +1,4 @@
-var Class = require('../src/class');
+var Class = require('../src/js.class');
 describe("Class test", function() {
 
     it("Class - statics", function() {
