@@ -23,7 +23,7 @@
  *
  **/
 var JSClass = (function() {
-    var _supportConsts = typeof Object.defineProperty === 'function';
+    var _supportDefineProperty = typeof Object.defineProperty === 'function';
 
     function _rewriteStatics(fnc, statics) {
         for (var prop in statics) {//do not override build-in statics
@@ -36,18 +36,55 @@ var JSClass = (function() {
             }
 
             //check if static is a constant
-            if (_supportConsts && prop === prop.toUpperCase()) {
-                Object.defineProperty(fnc, prop, {
-                    writable: false,
-                    configurable: false,
-                    enumerable: true,
-                    value: statics[prop]
-                });
+            if (_supportDefineProperty) {
+                //check if static is a constant
+                if (prop === prop.toUpperCase()) {
+                    Object.defineProperty(fnc, prop, {
+                        writable: false,
+                        configurable: false,
+                        enumerable: true,
+                        value: statics[prop]
+                    });
+                    Object.defineProperty(fnc.prototype, prop, {
+                        writable: false,
+                        configurable: false,
+                        enumerable: true,
+                        value: statics[prop]
+                    });
+                } else {
+                    Object.defineProperty(fnc, prop, {
+                        get: function() {
+                            return statics[prop]
+                        },
+                        set: function(val) {
+                            statics[prop] = val;
+                        }
+                    });
+                    Object.defineProperty(fnc.prototype, prop, {
+                        get: function() {
+                            return statics[prop]
+                        },
+                        set: function(val) {
+                            statics[prop] = val;
+                        }
+                    });
+                }
             } else {
                 fnc[prop] = statics[prop];
             }
         }
     }
+    function _extend(base, source, overrideConstructor) {
+        overrideConstructor = overrideConstructor || false;
+
+        for (var p in source) {
+            if ((p === 'create' && !overrideConstructor) || p === 'typeOf' || p === 'mixin' || p === 'static' || p === 'extend') {
+                continue;
+            }
+            base[p] = source[p];
+        }
+    }
+
     return function (classBody) {
 
         var _preventCreateCall = false;
@@ -72,22 +109,21 @@ var JSClass = (function() {
 
             var classPrototype = classConstructor.prototype;
 
-
             classPrototype.typeOf = function(cls) {
-
-                if (this instanceof cls) {
-                    return true;
-                } else if (_mixins.indexOf(cls) >= 0) {
-                    return true;
+                if (typeof cls === 'object') {
+                    return _mixins.indexOf(cls) >= 0;
+                } else if (typeof cls === 'function') {
+                    if (this instanceof cls) {
+                        return true;
+                    } else if (_mixins.indexOf(cls) >= 0) {
+                        return true;
+                    }
                 }
+
                 return false;
             };
 
-
-            //create class body
-            for (var prop in classBody) {
-                classPrototype[prop] = classBody[prop];
-            }
+            _extend(classPrototype, classBody, true);
 
             /**
              * Creates and returns new constructor function which extends
@@ -120,13 +156,15 @@ var JSClass = (function() {
                 for (var i = 0, l = arguments.length; i < l; i++) {
                     //check if class implements interfaces
                     var mixin = arguments[i];
-                    var methods = mixin.prototype;
-                    for (var method in methods) {
-                        var buildIn =  method === 'create' || method === 'typeOf';
-                        if (methods.hasOwnProperty(method) && typeof methods[method] === 'function' && !buildIn) {
-                            classPrototype[method] = methods[method];
-                        }
+
+                    if (typeof mixin === 'function') {
+                        var methods = mixin.prototype;
+                    } else if (typeof mixin === 'object') {
+                        var methods = mixin;
+                    } else {
+                        throw new Error('js.class mixin method accepts only types: object, function - `' + (typeof mixin) + '` type given');
                     }
+                    _extend(classPrototype, methods, false);
                     _mixins.push(mixin);
                 }
                 return classConstructor;

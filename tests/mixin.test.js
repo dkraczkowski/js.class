@@ -60,6 +60,16 @@ describe("Class test", function() {
         expect(o.typeOf(Other)).toBeTruthy();
         expect(o.typeOf(Other2)).toBeTruthy();
 
+        var Literal = {
+            doA: function() {}
+        };
+
+        ManyOthers.mixin(Literal);
+
+        var mo = new ManyOthers();
+        expect(mo.typeOf(Literal)).toBeTruthy();
+        expect(typeof mo['doA'] === 'function').toBeTruthy();
+
     });
 
 });

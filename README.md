@@ -184,12 +184,12 @@ ee-class x 37,730 ops/sec ±4.70% (85 runs sampled)
 ```
 node ./benchmark/class-mixins.js
 
-js.class x 3,711,831 ops/sec ±42.60% (49 runs sampled)
-class x 659,439 ops/sec ±0.31% (99 runs sampled)
-klass x 253,159 ops/sec ±0.32% (99 runs sampled)
-ee-class x 151,110 ops/sec ±0.66% (98 runs sampled)
+js.class x 677,574 ops/sec ±5.74% (86 runs sampled)
+class x 541,828 ops/sec ±2.33% (93 runs sampled)
+klass x 210,674 ops/sec ±6.61% (83 runs sampled)
+ee-class x 140,770 ops/sec ±1.89% (96 runs sampled)
 ```
-| Note that only js.class supports `typeof` method, which allows you to determine whether given object is a mixin of other class.
+| Note that only js.class supports `typeof` method, which allows you to determine whether given object is a mixin of other object/class.
 
 ####Conclusion
 You may notice simple class declaration is the fastest in `class` library, but when it comes to more
@@ -197,6 +197,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.2.6
+Mixin method accepts objects as well
 ### 2.2.5
 Added benchmarks for libraries `class`, `klass`, `ee-class`
 ### 2.2.1

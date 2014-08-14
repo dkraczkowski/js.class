@@ -68,6 +68,18 @@ var Class = (function() {
             }
         }
     }
+
+    function _extend(base, source, overrideConstructor) {
+        overrideConstructor = overrideConstructor || false;
+
+        for (var p in source) {
+            if ((p === 'create' && !overrideConstructor) || p === 'typeOf' || p === 'mixin' || p === 'static' || p === 'extend') {
+                continue;
+            }
+            base[p] = source[p];
+        }
+    }
+
     return function (classBody) {
 
         var _preventCreateCall = false;
@@ -93,18 +105,20 @@ var Class = (function() {
             var classPrototype = classConstructor.prototype;
 
             classPrototype.typeOf = function(cls) {
-                if (this instanceof cls) {
-                    return true;
-                } else if (_mixins.indexOf(cls) >= 0) {
-                    return true;
+                if (typeof cls === 'object') {
+                    return _mixins.indexOf(cls) >= 0;
+                } else if (typeof cls === 'function') {
+                    if (this instanceof cls) {
+                        return true;
+                    } else if (_mixins.indexOf(cls) >= 0) {
+                        return true;
+                    }
                 }
+
                 return false;
             };
 
-            //create class body
-            for (var prop in classBody) {
-                classPrototype[prop] = classBody[prop];
-            }
+            _extend(classPrototype, classBody, true);
 
             /**
              * Creates and returns new constructor function which extends
@@ -137,13 +151,15 @@ var Class = (function() {
                 for (var i = 0, l = arguments.length; i < l; i++) {
                     //check if class implements interfaces
                     var mixin = arguments[i];
-                    var methods = mixin.prototype;
-                    for (var method in methods) {
-                        var buildIn =  method === 'create' || method === 'typeOf';
-                        if (methods.hasOwnProperty(method) && typeof methods[method] === 'function' && !buildIn) {
-                            classPrototype[method] = methods[method];
-                        }
+
+                    if (typeof mixin === 'function') {
+                        var methods = mixin.prototype;
+                    } else if (typeof mixin === 'object') {
+                        var methods = mixin;
+                    } else {
+                        throw new Error('js.class mixin method accepts only types: object, function - `' + (typeof mixin) + '` type given');
                     }
+                    _extend(classPrototype, methods, false);
                     _mixins.push(mixin);
                 }
                 return classConstructor;
