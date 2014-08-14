@@ -5,7 +5,6 @@ var klass = require('klass');
 var Benchmark = require('benchmark').Benchmark;
 var suite = new Benchmark.Suite;
 
-
 var EEAnimal = new EEClass({
     init: function(){},
     eat: function() {},
@@ -32,41 +31,37 @@ var KAnimal = klass(function(){
 });
 
 
+var MixinObject = {
+    isWarmBlooded: function() {
+        return true;
+    }
+};
+
+var MixinClass = function() {};
+MixinClass.prototype.isWarmBlooded = function() {return true;};//mixin can be also js class definition
+
+
+
 // add tests
 suite.add('ee-class', function() {
 
-
-    var Mammal = new EEClass({
-        inherits: EEAnimal,
-        eatMilk: function() {}
-    });
-
-    var bobby = new Mammal();
+    var bobby = new EEAnimal();
+    EEClass.implement(bobby, MixinObject);
 
 }).add('js.class', function() {
 
-    var Mammal = JSCAnimal.extend({
-        eatMilk: function() {}
-    });
-
-    var bobby = new Mammal();
+    JSCAnimal.mixin(MixinObject);
+    var bobby = new JSCAnimal();
 
 }).add('class', function() {
 
-
-    var Mammal = CAnimal.subclass({
-        eatMilk: function() {}
-    });
-
-    var bobby = Mammal.new();
+    CAnimal.include(MixinObject);
+    var bobby = CAnimal.new();
 
 }).add('klass', function() {
 
-    var Mammal = KAnimal.extend({
-        eatMilk: function() {}
-    });
-
-    var bobby = new Mammal();
+    var bobby = new KAnimal();
+    bobby.implement(MixinObject);
 
 }).on('cycle', function(event) {
     console.log(String(event.target));
