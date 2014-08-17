@@ -107,19 +107,6 @@ var Class = (function() {
                 }
             };
 
-
-            if (isSingleton) {
-                classConstructor.instance = function() {
-                    if (!instance) {
-                        isSingleton = false;
-                        instance = new classConstructor();
-                        isSingleton = true;
-                    }
-                    return instance;
-                }
-            }
-
-
             //make new class instance of extended object
             if (self !== null) {
                 _preventCreateCall = true;
@@ -147,17 +134,6 @@ var Class = (function() {
             }
 
             _extend(classPrototype, classBody, true);
-
-            /**
-             * Creates and returns new constructor function which extends
-             * its parent
-             *
-             * @param {Object} classBody
-             * @returns {Function}
-             */
-            classConstructor.extend = function (classBody) {
-                return createClass(this, classBody);
-            };
 
             /**
              * Defines statics and constans in class' body.
@@ -192,6 +168,33 @@ var Class = (function() {
                 }
                 return classConstructor;
             };
+
+            /**
+             * Creates and returns new constructor function which extends
+             * its parent
+             *
+             * @param {Object} classBody
+             * @returns {Function}
+             */
+            if (isSingleton) {
+                classConstructor.extend = function() {
+                    throw new Error('Singleton class cannot be extended');
+                };
+
+                classConstructor.instance = function() {
+                    if (!instance) {
+                        isSingleton = false;
+                        instance = new classConstructor();
+                        isSingleton = true;
+                    }
+                    return instance;
+                }
+
+            } else {
+                classConstructor.extend = function (classBody) {
+                    return createClass(this, classBody);
+                };
+            }
 
             return classConstructor;
         })(null, classBody);

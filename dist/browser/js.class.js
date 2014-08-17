@@ -35,6 +35,11 @@ var Class = (function() {
                 continue;
             }
 
+            if (typeof statics[prop] === 'function') {
+                fnc[prop] = statics[prop];
+                return;
+            }
+
             //check if static is a constant
             if (_supportDefineProperty) {
                 //check if static is a constant
@@ -92,11 +97,18 @@ var Class = (function() {
         return (function createClass(self, classBody) {
 
             var _mixins = [];
+            var instance;
+
+            var isSingleton = classBody.hasOwnProperty('singleton') && classBody.singleton;
 
             var classConstructor = function () {
                 //apply constructor pattern
                 if (typeof this['create'] === 'function' && _preventCreateCall === false) {
                     this.create.apply(this, arguments);
+                }
+
+                if (isSingleton && typeof this !== 'undefined') {
+                    throw new Error('Singleton object cannot have more than one instance, call instance method instead');
                 }
             };
 
@@ -122,19 +134,11 @@ var Class = (function() {
 
                 return false;
             };
+            if (typeof classBody === 'function') {
+                classBody = classBody();
+            }
 
             _extend(classPrototype, classBody, true);
-
-            /**
-             * Creates and returns new constructor function which extends
-             * its parent
-             *
-             * @param {Object} classBody
-             * @returns {Function}
-             */
-            classConstructor.extend = function (classBody) {
-                return createClass(this, classBody);
-            };
 
             /**
              * Defines statics and constans in class' body.
@@ -169,6 +173,33 @@ var Class = (function() {
                 }
                 return classConstructor;
             };
+
+            /**
+             * Creates and returns new constructor function which extends
+             * its parent
+             *
+             * @param {Object} classBody
+             * @returns {Function}
+             */
+            if (isSingleton) {
+                classConstructor.extend = function() {
+                    throw new Error('Singleton class cannot be extended');
+                };
+
+                classConstructor.instance = function() {
+                    if (!instance) {
+                        isSingleton = false;
+                        instance = new classConstructor();
+                        isSingleton = true;
+                    }
+                    return instance;
+                }
+
+            } else {
+                classConstructor.extend = function (classBody) {
+                    return createClass(this, classBody);
+                };
+            }
 
             return classConstructor;
         })(null, classBody);

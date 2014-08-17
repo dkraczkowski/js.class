@@ -243,6 +243,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.4.1
+Singleton object cannot be extended
 ### 2.4.0
 Added singleton support
 ### 2.2.6
