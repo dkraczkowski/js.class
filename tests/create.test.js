@@ -1,6 +1,34 @@
 var Class = require('../src/js.class');
 describe("Class basic test", function() {
 
+    it("Class - declaration by function", function() {
+
+        var Pet = Class(function Pet() {
+
+
+            return {
+                create: function () {
+                    this._created = true;
+                },
+                getCreated: function() {
+                    return this._created;
+                },
+                setCreated: function(val) {
+                    this._created = val;
+                }
+            };
+        });
+
+        var d1 = new Pet();
+        expect(d1.getCreated()).toBeTruthy();
+        var d2 = new Pet();
+        d2.setCreated(false);
+        expect(d1.getCreated()).toBeTruthy();
+        expect(d2.getCreated()).toBeFalsy();
+
+
+    });
+
     it("Class - new no arguments", function() {
         var Pet = Class({
             create: function() {

@@ -1,4 +1,4 @@
-var JSClass = require('../src/class.js');
+var JSClass = require('../src/js.class.js');
 var Class = require('class');
 var EEClass = require('ee-class');
 var klass = require('klass');

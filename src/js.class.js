@@ -34,6 +34,11 @@ var Class = (function() {
                 continue;
             }
 
+            if (typeof statics[prop] === 'function') {
+                fnc[prop] = statics[prop];
+                return;
+            }
+
             //check if static is a constant
             if (prop === prop.toUpperCase()) {
                 Object.defineProperty(fnc, prop, {
@@ -87,13 +92,33 @@ var Class = (function() {
         return (function createClass(self, classBody) {
 
             var _mixins = [];
+            var instance;
+
+            var isSingleton = classBody.hasOwnProperty('singleton') && classBody.singleton;
 
             var classConstructor = function () {
                 //apply constructor pattern
                 if (typeof this['create'] === 'function' && _preventCreateCall === false) {
                     this.create.apply(this, arguments);
                 }
+
+                if (isSingleton && typeof this !== 'undefined') {
+                    throw new Error('Singleton object cannot have more than one instance, call instance method instead');
+                }
             };
+
+
+            if (isSingleton) {
+                classConstructor.instance = function() {
+                    if (!instance) {
+                        isSingleton = false;
+                        instance = new classConstructor();
+                        isSingleton = true;
+                    }
+                    return instance;
+                }
+            }
+
 
             //make new class instance of extended object
             if (self !== null) {
@@ -117,6 +142,9 @@ var Class = (function() {
 
                 return false;
             };
+            if (typeof classBody === 'function') {
+                classBody = classBody();
+            }
 
             _extend(classPrototype, classBody, true);
 

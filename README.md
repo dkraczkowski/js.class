@@ -10,6 +10,7 @@ js.class is a library which focuses on simplifying OOP in javascript. Additional
  - works on both browser and node.js
  - supports: inheritance, statics, constans, mixins
  - typeOf
+ - build in singleton support
 
 API
 =========================
@@ -140,6 +141,23 @@ pluto.name('pluto');
 console.log(pluto.name());//pluto
 console.log(pluto.fed);//true
 ```
+###Singleton
+In order to create singleton class set `singleton` property to true, eg.:
+```js
+var Singleton = Class({
+    singleton: true,
+    doA: function() {
+        return 'a';
+    }
+});
+
+var p1 = Singleton.instance();
+var p2 = Singleton.instance();
+
+p1 === p2;//true
+
+new Singleton();//will throw an Error
+```
 
 ###typeOf
 
@@ -225,6 +243,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.4.0
+Added singleton support
 ### 2.2.6
 Mixin method accepts objects as well
 ### 2.2.5
