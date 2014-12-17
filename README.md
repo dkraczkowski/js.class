@@ -66,6 +66,41 @@ console.log(instance.param1);//1
 console.log(instance.param2);//2
 ```
 
+###Getters/Setters
+```js
+var MyClass = Class({
+    create: function(param1, param2) {//this will be called with new keyword
+        this.param1 = param1;
+        this.param2 = param2;
+    },
+    get: {
+        allParams = function() {
+            return [param1, param2];
+        },
+        evenParams = function() {
+            return [param1];
+        },
+        oddParams = function() {
+            return [param2];
+        }
+    },
+    set: {
+        allParams: function(value) {
+            this.param1 = value[0];
+            this.param2 = value[1];
+        }
+    }
+});
+var instance = new MyClass(1,2);
+console.log(instance.allParams);//[1,2]
+console.log(instance.oddParams);//[2]
+
+instance.allParams = [3,4];
+console.log(instance.allParams);//[3,4]
+```
+
+_Check tests for more examples_
+
 ###Inheritance
 ```js
 var MyChildClass = MyClass.extend({});
@@ -243,6 +278,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.5.0
+Added setters/getters support
 ### 2.4.1
 Singleton object cannot be extended
 ### 2.4.0

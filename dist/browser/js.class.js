@@ -23,62 +23,53 @@
  *
  **/
 var Class = (function() {
-    var _supportDefineProperty = typeof Object.defineProperty === 'function';
 
     function _rewriteStatics(fnc, statics) {
-        for (var prop in statics) {//do not override build-in statics
+        for (var prop in statics) {
             if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
                 continue;
             }
-            //do not rewrite objects to statics
-            if (typeof statics[prop] === 'object') {
-                continue;
-            }
 
-            if (typeof statics[prop] === 'function') {
+            if (typeof statics[prop] === 'object' || typeof statics[prop] === 'function') {
                 fnc[prop] = statics[prop];
                 return;
             }
 
             //check if static is a constant
-            if (_supportDefineProperty) {
-                //check if static is a constant
-                if (prop === prop.toUpperCase()) {
-                    Object.defineProperty(fnc, prop, {
-                        writable: false,
-                        configurable: false,
-                        enumerable: true,
-                        value: statics[prop]
-                    });
-                    Object.defineProperty(fnc.prototype, prop, {
-                        writable: false,
-                        configurable: false,
-                        enumerable: true,
-                        value: statics[prop]
-                    });
-                } else {
-                    Object.defineProperty(fnc, prop, {
-                        get: function() {
-                            return statics[prop]
-                        },
-                        set: function(val) {
-                            statics[prop] = val;
-                        }
-                    });
-                    Object.defineProperty(fnc.prototype, prop, {
-                        get: function() {
-                            return statics[prop]
-                        },
-                        set: function(val) {
-                            statics[prop] = val;
-                        }
-                    });
-                }
+            if (prop === prop.toUpperCase()) {
+                Object.defineProperty(fnc, prop, {
+                    writable: false,
+                    configurable: false,
+                    enumerable: true,
+                    value: statics[prop]
+                });
+                Object.defineProperty(fnc.prototype, prop, {
+                    writable: false,
+                    configurable: false,
+                    enumerable: true,
+                    value: statics[prop]
+                });
             } else {
-                fnc[prop] = statics[prop];
+                Object.defineProperty(fnc, prop, {
+                    get: function() {
+                        return statics[prop]
+                    },
+                    set: function(val) {
+                        statics[prop] = val;
+                    }
+                });
+                Object.defineProperty(fnc.prototype, prop, {
+                    get: function() {
+                        return statics[prop]
+                    },
+                    set: function(val) {
+                        statics[prop] = val;
+                    }
+                });
             }
         }
     }
+
     function _extend(base, source, overrideConstructor) {
         overrideConstructor = overrideConstructor || false;
 
@@ -105,6 +96,34 @@ var Class = (function() {
                 //apply constructor pattern
                 if (typeof this['create'] === 'function' && _preventCreateCall === false) {
                     this.create.apply(this, arguments);
+                }
+
+                //apply getter pattern
+                if (classBody.hasOwnProperty('get')) {
+                    for (var p in classBody.get) {
+
+                        var setter = 'set' in classBody ? (p in classBody.set ? classBody.set[p] : null) : null;
+                        if (setter !== null) {
+                            delete classBody.set[p];
+                            Object.defineProperty(this, p, {
+                                get: classBody.get[p],
+                                set: setter
+                            });
+                        } else {
+                            Object.defineProperty(this, p, {
+                                get: classBody.get[p]
+                            });
+                        }
+                    }
+                }
+
+                //apply setter pattern
+                if (classBody.hasOwnProperty('set')) {
+                    for (var p in classBody.set) {
+                        Object.defineProperty(this, p, {
+                            set: classBody.set[p]
+                        });
+                    }
                 }
 
                 if (isSingleton && typeof this !== 'undefined') {

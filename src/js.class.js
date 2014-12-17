@@ -29,12 +29,8 @@ var Class = (function() {
             if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
                 continue;
             }
-            //do not rewrite objects to statics
-            if (typeof statics[prop] === 'object') {
-                continue;
-            }
 
-            if (typeof statics[prop] === 'function') {
+            if (typeof statics[prop] === 'object' || typeof statics[prop] === 'function') {
                 fnc[prop] = statics[prop];
                 return;
             }
@@ -100,6 +96,34 @@ var Class = (function() {
                 //apply constructor pattern
                 if (typeof this['create'] === 'function' && _preventCreateCall === false) {
                     this.create.apply(this, arguments);
+                }
+
+                //apply getter pattern
+                if (classBody.hasOwnProperty('get')) {
+                    for (var p in classBody.get) {
+
+                        var setter = 'set' in classBody ? (p in classBody.set ? classBody.set[p] : null) : null;
+                        if (setter !== null) {
+                            delete classBody.set[p];
+                            Object.defineProperty(this, p, {
+                                get: classBody.get[p],
+                                set: setter
+                            });
+                        } else {
+                            Object.defineProperty(this, p, {
+                                get: classBody.get[p]
+                            });
+                        }
+                    }
+                }
+
+                //apply setter pattern
+                if (classBody.hasOwnProperty('set')) {
+                    for (var p in classBody.set) {
+                        Object.defineProperty(this, p, {
+                            set: classBody.set[p]
+                        });
+                    }
                 }
 
                 if (isSingleton && typeof this !== 'undefined') {

@@ -30,6 +30,20 @@ describe("Class test", function() {
         var dog = new Pet();
         expect(dog.CONST_TEST).toEqual('constTest');
         expect(dog.staticTest).toEqual('pass');
+
+
+
+
+        var Pet2 = Class({singleton: true}).static({
+            st1: {
+                a: 1
+            }
+        });
+        expect(Pet2.st1.a).toEqual(1);
+
+
     });
+
+
 
 });

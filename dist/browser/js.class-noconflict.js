@@ -22,26 +22,19 @@
  * THE SOFTWARE.
  *
  **/
-var JSClass = (function() {
-    var _supportDefineProperty = typeof Object.defineProperty === 'function';
+var JSClass =  (function() {
 
-    function _rewriteStatics(fnc, statics) {
-        for (var prop in statics) {//do not override build-in statics
-            if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
-                continue;
-            }
-            //do not rewrite objects to statics
-            if (typeof statics[prop] === 'object') {
-                continue;
-            }
+        function _rewriteStatics(fnc, statics) {
+            for (var prop in statics) {
+                if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
+                    continue;
+                }
 
-            if (typeof statics[prop] === 'function') {
-                fnc[prop] = statics[prop];
-                return;
-            }
+                if (typeof statics[prop] === 'object' || typeof statics[prop] === 'function') {
+                    fnc[prop] = statics[prop];
+                    return;
+                }
 
-            //check if static is a constant
-            if (_supportDefineProperty) {
                 //check if static is a constant
                 if (prop === prop.toUpperCase()) {
                     Object.defineProperty(fnc, prop, {
@@ -74,134 +67,160 @@ var JSClass = (function() {
                         }
                     });
                 }
-            } else {
-                fnc[prop] = statics[prop];
             }
         }
-    }
-    function _extend(base, source, overrideConstructor) {
-        overrideConstructor = overrideConstructor || false;
 
-        for (var p in source) {
-            if ((p === 'create' && !overrideConstructor) || p === 'typeOf' || p === 'mixin' || p === 'static' || p === 'extend') {
-                continue;
+        function _extend(base, source, overrideConstructor) {
+            overrideConstructor = overrideConstructor || false;
+
+            for (var p in source) {
+                if ((p === 'create' && !overrideConstructor) || p === 'typeOf' || p === 'mixin' || p === 'static' || p === 'extend') {
+                    continue;
+                }
+                base[p] = source[p];
             }
-            base[p] = source[p];
         }
-    }
 
-    return function (classBody) {
+        return function (classBody) {
 
-        var _preventCreateCall = false;
+            var _preventCreateCall = false;
 
-        return (function createClass(self, classBody) {
+            return (function createClass(self, classBody) {
 
-            var _mixins = [];
-            var instance;
+                var _mixins = [];
+                var instance;
 
-            var isSingleton = classBody.hasOwnProperty('singleton') && classBody.singleton;
+                var isSingleton = classBody.hasOwnProperty('singleton') && classBody.singleton;
 
-            var classConstructor = function () {
-                //apply constructor pattern
-                if (typeof this['create'] === 'function' && _preventCreateCall === false) {
-                    this.create.apply(this, arguments);
-                }
-
-                if (isSingleton && typeof this !== 'undefined') {
-                    throw new Error('Singleton object cannot have more than one instance, call instance method instead');
-                }
-            };
-
-            //make new class instance of extended object
-            if (self !== null) {
-                _preventCreateCall = true;
-                classConstructor.prototype = new self();
-                _preventCreateCall = false;
-            }
-
-            var classPrototype = classConstructor.prototype;
-
-            classPrototype.typeOf = function(cls) {
-                if (typeof cls === 'object') {
-                    return _mixins.indexOf(cls) >= 0;
-                } else if (typeof cls === 'function') {
-                    if (this instanceof cls) {
-                        return true;
-                    } else if (_mixins.indexOf(cls) >= 0) {
-                        return true;
+                var classConstructor = function () {
+                    //apply constructor pattern
+                    if (typeof this['create'] === 'function' && _preventCreateCall === false) {
+                        this.create.apply(this, arguments);
                     }
-                }
 
-                return false;
-            };
-            if (typeof classBody === 'function') {
-                classBody = classBody();
-            }
+                    //apply getter pattern
+                    if (classBody.hasOwnProperty('get')) {
+                        for (var p in classBody.get) {
 
-            _extend(classPrototype, classBody, true);
-
-            /**
-             * Defines statics and constans in class' body.
-             *
-             * @param {Object} statics
-             * @returns {Function}
-             */
-            classConstructor.static = function(statics) {
-                _rewriteStatics(classConstructor, statics);
-                return classConstructor;
-            };
-
-            /**
-             * Extends class body by passed other class declaration
-             * @param {Function} *mixins
-             * @returns {Function}
-             */
-            classConstructor.mixin = function() {
-                for (var i = 0, l = arguments.length; i < l; i++) {
-                    //check if class implements interfaces
-                    var mixin = arguments[i];
-
-                    if (typeof mixin === 'function') {
-                        var methods = mixin.prototype;
-                    } else if (typeof mixin === 'object') {
-                        var methods = mixin;
-                    } else {
-                        throw new Error('js.class mixin method accepts only types: object, function - `' + (typeof mixin) + '` type given');
+                            var setter = 'set' in classBody ? (p in classBody.set ? classBody.set[p] : null) : null;
+                            if (setter !== null) {
+                                delete classBody.set[p];
+                                Object.defineProperty(this, p, {
+                                    get: classBody.get[p],
+                                    set: setter
+                                });
+                            } else {
+                                Object.defineProperty(this, p, {
+                                    get: classBody.get[p]
+                                });
+                            }
+                        }
                     }
-                    _extend(classPrototype, methods, false);
-                    _mixins.push(mixin);
-                }
-                return classConstructor;
-            };
 
-            /**
-             * Creates and returns new constructor function which extends
-             * its parent
-             *
-             * @param {Object} classBody
-             * @returns {Function}
-             */
-            if (isSingleton) {
-                classConstructor.extend = function() {
-                    throw new Error('Singleton class cannot be extended');
+                    //apply setter pattern
+                    if (classBody.hasOwnProperty('set')) {
+                        for (var p in classBody.set) {
+                            Object.defineProperty(this, p, {
+                                set: classBody.set[p]
+                            });
+                        }
+                    }
+
+                    if (isSingleton && typeof this !== 'undefined') {
+                        throw new Error('Singleton object cannot have more than one instance, call instance method instead');
+                    }
                 };
 
-                classConstructor.instance = function() {
-                    if (!instance) {
-                        isSingleton = false;
-                        instance = new classConstructor();
-                        isSingleton = true;
-                    }
-                    return instance;
+                //make new class instance of extended object
+                if (self !== null) {
+                    _preventCreateCall = true;
+                    classConstructor.prototype = new self();
+                    _preventCreateCall = false;
                 }
 
-            } else {
-                classConstructor.extend = function (classBody) {
-                    return createClass(this, classBody);
-                };
-            }
+                var classPrototype = classConstructor.prototype;
 
-            return classConstructor;
-        })(null, classBody);
-    }
-})();
+                classPrototype.typeOf = function(cls) {
+                    if (typeof cls === 'object') {
+                        return _mixins.indexOf(cls) >= 0;
+                    } else if (typeof cls === 'function') {
+                        if (this instanceof cls) {
+                            return true;
+                        } else if (_mixins.indexOf(cls) >= 0) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                };
+                if (typeof classBody === 'function') {
+                    classBody = classBody();
+                }
+
+                _extend(classPrototype, classBody, true);
+
+                /**
+                 * Defines statics and constans in class' body.
+                 *
+                 * @param {Object} statics
+                 * @returns {Function}
+                 */
+                classConstructor.static = function(statics) {
+                    _rewriteStatics(classConstructor, statics);
+                    return classConstructor;
+                };
+
+                /**
+                 * Extends class body by passed other class declaration
+                 * @param {Function} *mixins
+                 * @returns {Function}
+                 */
+                classConstructor.mixin = function() {
+                    for (var i = 0, l = arguments.length; i < l; i++) {
+                        //check if class implements interfaces
+                        var mixin = arguments[i];
+
+                        if (typeof mixin === 'function') {
+                            var methods = mixin.prototype;
+                        } else if (typeof mixin === 'object') {
+                            var methods = mixin;
+                        } else {
+                            throw new Error('js.class mixin method accepts only types: object, function - `' + (typeof mixin) + '` type given');
+                        }
+                        _extend(classPrototype, methods, false);
+                        _mixins.push(mixin);
+                    }
+                    return classConstructor;
+                };
+
+                /**
+                 * Creates and returns new constructor function which extends
+                 * its parent
+                 *
+                 * @param {Object} classBody
+                 * @returns {Function}
+                 */
+                if (isSingleton) {
+                    classConstructor.extend = function() {
+                        throw new Error('Singleton class cannot be extended');
+                    };
+
+                    classConstructor.instance = function() {
+                        if (!instance) {
+                            isSingleton = false;
+                            instance = new classConstructor();
+                            isSingleton = true;
+                        }
+                        return instance;
+                    }
+
+                } else {
+                    classConstructor.extend = function (classBody) {
+                        return createClass(this, classBody);
+                    };
+                }
+
+                return classConstructor;
+            })(null, classBody);
+        }
+    })();
