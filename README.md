@@ -8,7 +8,7 @@ js.class is a library which focuses on simplifying OOP in javascript. JSClass pe
  - super fast!
  - small footprint, no dependency, 0.2K minimized
  - works on both browser and node.js
- - supports: inheritance, statics, constans, mixins
+ - supports: inheritance, statics, constans, mixins, getters, setters
  - typeOf
  - build in singleton support
 
