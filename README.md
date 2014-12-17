@@ -67,7 +67,9 @@ console.log(instance.param2);//2
 ```
 
 ###Getters/Setters
+
 > Getters/Setters will not work in ie >=8 due to lack of Object.defineProperty support
+
 ```js
 var MyClass = Class({
     create: function(param1, param2) {//this will be called with new keyword
@@ -120,6 +122,7 @@ var MyChildClass = MyClass.extend({
 ```
 
 ###Statics and constans
+
 > Constans will not work in ie >=8 due to lack of Object.defineProperty support
 
 
