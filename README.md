@@ -1,7 +1,7 @@
 js.class [![Build Status](https://travis-ci.org/dkraczkowski/js.class.svg?branch=master)](https://travis-ci.org/dkraczkowski/js.class)
 ========
 
-js.class is a library which focuses on simplifying OOP in javascript. Additionaly it is very fast if you compare it to libraries like: `klass`, `ee-class` or even `Class`.
+js.class is a library which focuses on simplifying OOP in javascript. JSClass performs with great speed if you compare it to other libraries like: `klass`, `ee-class` or even `Class`.
 
 
 ###Features:
