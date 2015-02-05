@@ -129,6 +129,7 @@ var Class = (function() {
                 if (isSingleton && typeof this !== 'undefined') {
                     throw new Error('Singleton object cannot have more than one instance, call instance method instead');
                 }
+                this.constructor = classConstructor;
             };
 
             //make new class instance of extended object

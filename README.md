@@ -282,6 +282,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.5.1
+Fixed constructor in factored objects
 ### 2.5.0
 Added setters/getters support
 ### 2.4.1
