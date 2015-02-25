@@ -21,6 +21,11 @@ describe("Class getters/setters", function() {
         expect(tommy.hasOwnProperty('fullName')).toBeTruthy();
         expect(tommy.fullName).toEqual("Tomee LeeJohnes");
 
+        var johnny = new Person("Johnny", "LeeJohnes");
+        expect('fullName' in johnny).toBeTruthy();
+        expect(johnny.hasOwnProperty('fullName')).toBeTruthy();
+        expect(johnny.fullName).toEqual("Johnny LeeJohnes");
+
         var BetterPerson = Person.extend({
             get: {
                 betterFullName: function() {
@@ -62,6 +67,11 @@ describe("Class getters/setters", function() {
         tommy.fullName = "Tommee LiJohnes";
         expect(tommy.name).toEqual("Tommee");
         expect(tommy.familyName).toEqual("LiJohnes");
+
+        var johnny = new Person("Johnny", "LeeJohnes_the_Second");
+        tommy.fullName = "Johnny LiJohnes_the_Second";
+        expect(tommy.name).toEqual("Johnny");
+        expect(tommy.familyName).toEqual("LiJohnes_the_Second");
 
         var BetterPerson = Person.extend({
             set: {
@@ -120,6 +130,17 @@ describe("Class getters/setters", function() {
 
         expect(tommy.name).toEqual("Tommee");
         expect(tommy.familyName).toEqual("LiJohnes");
+
+        var johnny = new Person("Johnny", "LeeJohnes_the_Second");
+        expect('fullName' in johnny).toBeTruthy();
+        expect(johnny.hasOwnProperty('fullName')).toBeTruthy();
+        expect(johnny.fullName).toEqual("Johnny LeeJohnes_the_Second");
+        expect(johnny.hasOwnProperty('upperCaseName')).toBeTruthy();
+
+        johnny.fullName = "Johnny LiJohnes_the_Second";
+
+        expect(johnny.name).toEqual("Johnny");
+        expect(johnny.familyName).toEqual("LiJohnes_the_Second");
 
 
     });
