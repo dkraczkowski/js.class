@@ -103,13 +103,7 @@ var Class = (function() {
                     for (var p in classBody.get) {
 
                         var setter = 'set' in classBody ? (p in classBody.set ? classBody.set[p] : null) : null;
-                        if (setter !== null) {
-                            delete classBody.set[p];
-                            Object.defineProperty(this, p, {
-                                get: classBody.get[p],
-                                set: setter
-                            });
-                        } else {
+                        if (setter === null) {
                             Object.defineProperty(this, p, {
                                 get: classBody.get[p]
                             });
@@ -120,9 +114,18 @@ var Class = (function() {
                 //apply setter pattern
                 if (classBody.hasOwnProperty('set')) {
                     for (var p in classBody.set) {
-                        Object.defineProperty(this, p, {
-                            set: classBody.set[p]
-                        });
+
+                        var getter = 'get' in classBody ? (p in classBody.get ? classBody.get[p] : null) : null;
+                        if (getter !== null) {
+                            Object.defineProperty(this, p, {
+                                set: classBody.set[p],
+                                get: classBody.get[p]
+                            });
+                        } else {
+                            Object.defineProperty(this, p, {
+                                set: classBody.set[p]
+                            });
+                        }
                     }
                 }
 
