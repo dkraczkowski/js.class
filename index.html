@@ -59,7 +59,7 @@
 <li>super fast!</li>
 <li>small footprint, no dependency, 0.2K minimized</li>
 <li>works on both browser and node.js</li>
-<li>supports: inheritance, statics, constans, mixins</li>
+<li>supports: inheritance, statics, constans, mixins, getters, setters</li>
 <li>typeOf</li>
 <li>build in singleton support</li>
 </ul>
@@ -126,6 +126,10 @@ var MyClass = Class({
 <h3>
 <a id="getterssetters" class="anchor" href="#getterssetters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getters/Setters</h3>
 
+<blockquote>
+<p>Getters/Setters will not work in ie &gt;=8 due to lack of Object.defineProperty support</p>
+</blockquote>
+
 <div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
     <span class="pl-en">create</span>: <span class="pl-st">function</span>(<span class="pl-vpf">param1</span>, <span class="pl-vpf">param2</span>) {<span class="pl-c">//this will be called with new keyword</span>
         <span class="pl-v">this</span>.param1 <span class="pl-k">=</span> param1;
@@ -179,7 +183,7 @@ instance.allParams <span class="pl-k">=</span> [<span class="pl-c1">3</span>,<sp
 <a id="statics-and-constans" class="anchor" href="#statics-and-constans" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statics and constans</h3>
 
 <blockquote>
-<p>Constans will not work in ie &gt;=8 due to lack of Object.define property support</p>
+<p>Constans will not work in ie &gt;=8 due to lack of Object.defineProperty support</p>
 </blockquote>
 
 <p>Static variables can be easy defined by usage of <code>static</code> function, which accepts literal object.</p>
@@ -345,6 +349,16 @@ advanced oop features <code>js.class</code> is a good choice.</p>
 
 <h1>
 <a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version History</h1>
+
+<h3>
+<a id="252" class="anchor" href="#252" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.5.2</h3>
+
+<p>Fix issue with set and get with multiple instances of the same Class (Thanks to fastrde)</p>
+
+<h3>
+<a id="251" class="anchor" href="#251" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.5.1</h3>
+
+<p>Fixed constructor in factored objects</p>
 
 <h3>
 <a id="250" class="anchor" href="#250" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.5.0</h3>
