@@ -15,12 +15,12 @@ js.class is a library which focuses on simplifying OOP in javascript. JSClass pe
 Installation
 ============
 
-#Npm
+###Npm
 ```
 npm install js.class
 ```
 
-#Bower
+###Bower
 ```
 bower install js.class
 ```
