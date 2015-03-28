@@ -11,6 +11,19 @@ js.class is a library which focuses on simplifying OOP in javascript. JSClass pe
  - supports: inheritance, statics, constans, mixins, getters, setters
  - typeOf
  - build in singleton support
+ 
+Installation
+============
+
+#Npm
+```
+npm install js.class
+```
+
+#Bower
+```
+bower install js.class
+```
 
 API
 =========================
