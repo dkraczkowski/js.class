@@ -17,7 +17,7 @@
     "scripts": {
         "test": "jasmine-node --verbose --matchall tests"
     },
-    "author": "Crac",
+    "author": "Dawid Kraczkowski <Krac>",
     "devDependencies": {
         "jasmine-node": "latest",
         "benchmark": "latest",
