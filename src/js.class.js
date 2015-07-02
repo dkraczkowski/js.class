@@ -139,10 +139,24 @@ var Class = (function() {
             if (self !== null) {
                 _preventCreateCall = true;
                 classConstructor.prototype = new self();
+                // keep base class
+                classConstructor.base = self; 
                 _preventCreateCall = false;
             }
 
             var classPrototype = classConstructor.prototype;
+            
+            // to invoke base class' create function just
+            // call this.base() on create function
+            classPrototype.base = function(){
+                if(typeof classConstructor.base === 'function'){
+                    var p = classConstructor.base.prototype;
+                    if(typeof p.create === 'function'){
+                        p.create.apply(this, arguments);
+                    }
+                }
+            };
+
 
             classPrototype.typeOf = function(cls) {
                 if (typeof cls === 'object') {
