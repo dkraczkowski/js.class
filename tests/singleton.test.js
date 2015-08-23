@@ -1,9 +1,9 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class singleton", function() {
 
     it("Class - singleton", function() {
 
-        var Pet = Class({
+        var Pet = JSClass({
             singleton: true,
             create: function() {
                 this.a = this.a || 0;
@@ -19,7 +19,7 @@ describe("Class singleton", function() {
         expect(d2.a).toEqual(1);
 
 
-        var Pet2 = Class({
+        var Pet2 = JSClass({
             singleton: true,
             a: function() {
                 return 'b';
@@ -46,7 +46,7 @@ describe("Class singleton", function() {
     });
 
     it ("Class - singleton extend", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             singleton: true,
             create: function() {
                 this.a = this.a || 0;
@@ -67,7 +67,7 @@ describe("Class singleton", function() {
     });
 
     it ("Class - extend as singleton", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.a = this.a || 0;
                 this.a++;
