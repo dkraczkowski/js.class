@@ -2,7 +2,8 @@
  * @license
  * Copyright (C) 2011 by crac <![[dawid.kraczkowski[at]gmail[dot]com]]>
  * Thanks for Hardy Keppler<![[Keppler.H[at]online.de]]> for shortened version
- *
+ * Thanks for Leonardo Apiwan<![[https://github.com/homer0]]> for UMD wrapper
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
