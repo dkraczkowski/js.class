@@ -1,11 +1,9 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class basic test", function() {
 
     it("Class - declaration by function", function() {
 
-        var Pet = Class(function Pet() {
-
-
+        var Pet = JSClass(function Pet() {
             return {
                 create: function () {
                     this._created = true;
@@ -30,7 +28,7 @@ describe("Class basic test", function() {
     });
 
     it("Class - new no arguments", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.created = true;
             }
@@ -43,7 +41,7 @@ describe("Class basic test", function() {
     });
 
     it("Class - new with arguments", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function(arg1, arg2) {
                 this.arg1 = arg1;
                 this.arg2 = arg2;
@@ -68,7 +66,7 @@ describe("Class basic test", function() {
     });
 
     it("Class - with methods", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.woof = false;
                 this.hungry = true;
@@ -91,9 +89,6 @@ describe("Class basic test", function() {
         expect(dog.hungry).toBeFalsy();
         expect(dog2.hungry).toBeTruthy();
         expect(dog2.woof).toBeFalsy();
-
-
-
     });
 
 });

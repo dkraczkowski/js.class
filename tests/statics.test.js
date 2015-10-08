@@ -1,8 +1,8 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class test", function() {
 
     it("Class - statics", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.hungry = true;
                 this.thirsty = true;
@@ -34,7 +34,7 @@ describe("Class test", function() {
 
 
 
-        var Pet2 = Class({singleton: true}).static({
+        var Pet2 = JSClass({singleton: true}).static({
             st1: {
                 a: 1
             }
