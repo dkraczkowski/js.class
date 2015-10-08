@@ -1,8 +1,8 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class extend test", function() {
 
     it("Class - extend", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.hungry = true;
                 this.thirsty = true;
@@ -41,8 +41,9 @@ describe("Class extend test", function() {
         expect(flaffy.hungry).toBeFalsy();
 
     });
+
     it("Class - extend with override", function() {
-        var Pet = Class({
+        var Pet = JSClass({
             create: function() {
                 this.hungry = true;
                 this.thirsty = true;

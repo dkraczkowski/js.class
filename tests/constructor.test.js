@@ -1,7 +1,7 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class tests", function() {
     it("Class - constructor tests", function() {
-        var A = Class({});
+        var A = JSClass({});
         var B = A.extend({});
         var C = B.extend({});
 

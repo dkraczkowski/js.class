@@ -8,7 +8,7 @@ js.class performs with great speed if you compare it to other libraries like: `k
 ###Features:
  - super fast!
  - small footprint, no dependency, 0.2K minimized
- - works on both browser and node.js
+ - works on both browser (with UMD wrapper) and node.js
  - supports: inheritance, statics, constans, mixins, getters, setters
  - typeOf
  - build in singleton support
@@ -32,35 +32,34 @@ API
 ###Usage
 ####Node.js
 ```
-var Class = require('js.class');
-var MyClass = Class({
+var JSClass = require('js.class');
+var MyClass = JSClass({
     myMethod: function() {} //your method declaration
 });
 ```
 ####Browser
 #####Normal version
 ```html
-<script type="text/javascript" src="dist/browser/class.min.js"></script>
-<script>
-var MyClass = Class({
-    myMethod: function() {} //your method declaration
-});
-</script>
-```
-#####No conflict version:
-```html
-<script type="text/javascript" src="dist/browser/js.class-noconflict.js"></script>
+<script type="text/javascript" src="dist/js.class.min.js"></script>
 <script>
 var MyClass = JSClass({
     myMethod: function() {} //your method declaration
 });
 </script>
 ```
+#####AMD version:
+```js
+define(['JSClass'], function (JSClass) {
+    var MyClass = JSClass({
+        myMethod: function() {} //your method declaration
+    });
+});
+```
 
 ###Class declaration
 
 ```js
-var MyClass = Class({
+var MyClass = JSClass({
     myMethod: function() {} //your method declaration
 });
 ```
@@ -68,7 +67,7 @@ var MyClass = Class({
 ###Constructor pattern
 
 ```js
-var MyClass = Class({
+var MyClass = JSClass({
     create: function(param1, param2) {//this will be called with new keyword
         this.param1 = param1;
         this.param2 = param2;
@@ -85,7 +84,7 @@ console.log(instance.param2);//2
 > Getters/Setters will not work in ie >=8 due to lack of Object.defineProperty support
 
 ```js
-var MyClass = Class({
+var MyClass = JSClass({
     create: function(param1, param2) {//this will be called with new keyword
         this.param1 = param1;
         this.param2 = param2;
@@ -125,7 +124,7 @@ var MyChildClass = MyClass.extend({});
 
 ###Invoking overridden methods
 ```js
-var MyClass = Class({
+var MyClass = JSClass({
     myMethod: function() {};
 });
 var MyChildClass = MyClass.extend({
@@ -143,7 +142,7 @@ var MyChildClass = MyClass.extend({
 Static variables can be easy defined by usage of `static` function, which accepts literal object.
 
 ```js
-var StaticExample = Class({
+var StaticExample = JSClass({
 }).static({
     myStatic: 'myStatic'
 });
@@ -154,7 +153,7 @@ console.log(StaticExample.myStatic);//otherValue
 
 If literal object will contain a key in uppercase js-class will treat a variable as a constans:
 ```js
-var ConstantExample = Class({
+var ConstantExample = JSClass({
 }).static({
     MY_CONST: 'const'
 });
@@ -169,7 +168,7 @@ Mixin is a class which contains a combination of methods from other classes
 Its really usefull strategy if you are going to follow DRY methodology.
 To define mixin we need to simply use `mixin` method:
 ```js
-var Pet = Class({
+var Pet = JSClass({
     name: function(name) {
         if (typeof name === 'undefined') {
             return this.name;
@@ -185,7 +184,7 @@ var Animal = Class({
         this.drunk = true;
     }
 });
-var Dog = Class({
+var Dog = JSClass({
 }).mixin(Pet, Animal);
 var pluto = new Dog();
 pluto.eat();
@@ -197,7 +196,7 @@ console.log(pluto.fed);//true
 ###Singleton
 In order to create singleton class set `singleton` property to true, eg.:
 ```js
-var Singleton = Class({
+var Singleton = JSClass({
     singleton: true,
     doA: function() {
         return 'a';
@@ -231,7 +230,7 @@ Instance of support
 js.class does support `instanceof` operator. Consider the following example:
 
 ```js
-var MyClass = Class({
+var MyClass = JSClass({
     create: function(param1, param2) {
         this.param1 = param1;
         this.param2 = param2;
@@ -296,6 +295,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.5.3
+Added [UMD](https://github.com/umdjs/umd) wrapper, organize the build folder and added `npm run build` to create both the build and the minified version.
 ### 2.5.2
 Fix issue with set and get with multiple instances of the same Class (Thanks to fastrde)
 ### 2.5.1

@@ -1,9 +1,9 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class getters/setters", function() {
 
     it("Class - get", function() {
 
-        var Person = Class({
+        var Person = JSClass({
             get: {
                 fullName: function () {
                     return this.name + " " + this.familyName;
@@ -48,7 +48,7 @@ describe("Class getters/setters", function() {
     });
 
     it("Class - set", function() {
-        var Person = Class({
+        var Person = JSClass({
             set: {
                 fullName: function (value) {
                     var name = value.split(' ');
@@ -97,7 +97,7 @@ describe("Class getters/setters", function() {
     });
 
     it("Class - get/set", function() {
-        var Person = Class({
+        var Person = JSClass({
             get: {
                 fullName: function () {
                     return this.name + " " + this.familyName;

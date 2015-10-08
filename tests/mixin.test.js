@@ -1,17 +1,17 @@
-var Class = require('../src/js.class');
+var JSClass = require('../src/js.class');
 describe("Class test", function() {
 
     it("Class - mixins", function() {
 
-        var Other = Class({
+        var Other = JSClass({
             other: function(){}
         });
 
-        var Other2 = Class({
+        var Other2 = JSClass({
             other2: function() {}
         });
 
-        var Pet = Class({
+        var Pet = JSClass({
             name: function() {
                 return 'flaffy';
             }
@@ -19,7 +19,7 @@ describe("Class test", function() {
 
         function unusedMixin() {};
 
-        var Animal = Class({
+        var Animal = JSClass({
             eat: function() {
                 this.hungry = false;
             },
@@ -28,7 +28,7 @@ describe("Class test", function() {
             }
         });
 
-        var Dog = Class({
+        var Dog = JSClass({
             create: function() {
                 this.hungry = true;
                 this.thirsty = true;
@@ -50,7 +50,7 @@ describe("Class test", function() {
         flaffy.eat();
         expect(flaffy.hungry).toBeFalsy();
 
-        var ManyOthers = Class({}).mixin(Other, Other2);
+        var ManyOthers = JSClass({}).mixin(Other, Other2);
 
         var o = new ManyOthers();
         expect(o.typeOf(Animal)).toBeFalsy();

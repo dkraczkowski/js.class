@@ -15,15 +15,17 @@
     "private": false,
     "license": "MIT",
     "scripts": {
-        "test": "jasmine-node --verbose --matchall tests"
+        "test": "jasmine-node --verbose --matchall tests",
+        "build": "cp src/js.class.js dist/js.class.js; uglifyjs --comments -c -m -o dist/js.class.min.js -- dist/js.class.js"
     },
-    "author": "Crac",
+    "author": "Dawid Kraczkowski <Krac>",
     "devDependencies": {
         "jasmine-node": "latest",
         "benchmark": "latest",
         "class": "latest",
         "ee-class": "latest",
-        "klass": "latest"
+        "klass": "latest",
+        "uglify-js": "2.4.24"
     },
     "repository": {
         "type": "git",
