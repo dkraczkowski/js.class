@@ -2,6 +2,7 @@
  *
  * Copyright (C) 2011 by crac <![[dawid.kraczkowski[at]gmail[dot]com]]>
  * Thanks for Hardy Keppler<![[Keppler.H[at]online.de]]> for shortened version
+ * Thanks for Leonardo Apiwan<![[https://github.com/homer0]]> for UMD wrapper
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,6 +79,9 @@ var Class = (function() {
                 continue;
             }
             base[p] = source[p];
+            if (typeof source[p] === 'function') {
+                base[p].name = p;
+            }
         }
     }
 
@@ -143,6 +147,10 @@ var Class = (function() {
             }
 
             var classPrototype = classConstructor.prototype;
+
+            classPrototype.super = function() {
+                console.dir(arguments.callee);
+            };
 
             classPrototype.typeOf = function(cls) {
                 if (typeof cls === 'object') {
