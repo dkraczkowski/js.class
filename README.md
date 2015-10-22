@@ -2,8 +2,8 @@ js.class [![Build Status](https://travis-ci.org/dkraczkowski/js.class.svg?branch
 ========
 
 js.class is a class library which focuses on simplifying OOP in javascript by providing rich set of tools like: mixins, inheritance, getters, setters and more.
-js.class performs with great speed if you compare it to other libraries like: `klass`, `ee-class` or even `Class`.
 
+Version `2.6.0` contains [sjs](http://sweetjs.org/) macros for ES6 syntax.
 
 ###Features:
  - super fast!
@@ -12,7 +12,8 @@ js.class performs with great speed if you compare it to other libraries like: `k
  - supports: inheritance, statics, constans, mixins, getters, setters
  - typeOf
  - build in singleton support
- 
+ - ES6 syntax via sjs
+
 Installation
 ============
 
@@ -56,12 +57,21 @@ define(['JSClass'], function (JSClass) {
 });
 ```
 
+###JSClass ES6 syntax
+`JSClass` supports ES6 syntax thanks to sweet.js. In order to use ES6 syntax make sure you have installed [sweet.js node loader](https://github.com/mozilla/sweet.js/wiki/node-loader) and library is required as JSClass.
+
+
 ###Class declaration
 
 ```js
 var MyClass = JSClass({
     myMethod: function() {} //your method declaration
 });
+```
+
+####ES6 syntax
+```js
+class MyClass {}
 ```
 
 ###Constructor pattern
@@ -77,6 +87,16 @@ var MyClass = JSClass({
 var instance = new MyClass(1,2);
 console.log(instance.param1);//1
 console.log(instance.param2);//2
+```
+
+####ES6 syntax
+```js
+class MyClass {
+  create(param1, param2) {
+    this.param1 = param1;
+    this.param2 = param2;
+  }
+}
 ```
 
 ###Getters/Setters
@@ -120,6 +140,11 @@ _Check tests for more examples_
 ###Inheritance
 ```js
 var MyChildClass = MyClass.extend({});
+```
+
+####ES6 syntax
+```js
+class MyChildClass extends MyClass {}
 ```
 
 ###Invoking overridden methods
@@ -181,7 +206,7 @@ var Animal = Class({
         this.fed = true;
     },
     drink: function() {
-        this.drunk = true;
+        this.thirsty = false;
     }
 });
 var Dog = JSClass({
@@ -191,8 +216,37 @@ pluto.eat();
 pluto.name('pluto');
 
 console.log(pluto.name());//pluto
-console.log(pluto.fed);//true
+console.log(pluto.thirsty);//false
 ```
+
+####ES6 syntax
+```js
+class Pet {
+  name(name) {
+    if (typeof name === 'undefined') {
+        return this.name;
+    }
+    this.name = name;
+  }
+}
+class Animal {
+  eat() {
+    this.fed = true;
+  }
+  drink() {
+    this.thirsty = false;
+  }
+}
+class Dog implements Pet, Animal {}
+
+var pluto = new Dog();
+pluto.eat();
+pluto.name('pluto');
+
+console.log(pluto.name());//pluto
+console.log(pluto.thirsty);//false
+```
+
 ###Singleton
 In order to create singleton class set `singleton` property to true, eg.:
 ```js
@@ -225,6 +279,16 @@ console.log(pluto.typeOf(Pet));//true
 console.log(pluto.typeOf(MyClass));//false
 ```
 
+####ES6 syntax
+```
+var pluto = new Dog();
+
+console.log(pluto is Dog);//true
+console.log(pluto is Animal);//true
+console.log(pluto is Pet);//true
+console.log(pluto is MyClass);//false
+```
+
 Instance of support
 ===================
 js.class does support `instanceof` operator. Consider the following example:
@@ -242,6 +306,25 @@ var t = new MyChildClass();
 
 console.log(t instanceof MyClass);//true
 console.log(t instanceof MyChildClass);//true
+```
+
+####ES6 syntax
+```
+class MyClass {
+  create(param1, param2) {
+    this.param1 = param1;
+    this.param2 = param2;
+  }
+}
+class MyChildClass extends MyClass {
+
+}
+
+var t = new MyChildClass();
+
+console.log(t instanceof MyClass);//true
+console.log(t instanceof MyChildClass);//true
+
 ```
 
 For Developers
@@ -295,6 +378,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.6.0
+Added base javascript macros
 ### 2.5.3
 Added [UMD](https://github.com/umdjs/umd) wrapper, organize the build folder and added `npm run build` to create both the build and the minified version.
 ### 2.5.2
