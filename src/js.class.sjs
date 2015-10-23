@@ -46,6 +46,9 @@ macro class {
 macro clsSuper {
     case { $ctx $cls $method { $body ... } } => {
         var stx = #{ $body ... };
+        if (stx.length === 0) {
+          return #{};
+        }
         var res = search(stx);
         res = [
             //preserve this
@@ -62,7 +65,6 @@ macro clsSuper {
 
         function search(stx) {
             var res = [];
-
             for(var i=0; i<stx.length; i++) {
                 var s = stx[i];
                 if(s.token.type == parser.Token.Delimiter) {
