@@ -50,13 +50,14 @@ macro clsSuper {
           return #{};
         }
         var res = search(stx);
+        var ctx = stx[0];
         res = [
             //preserve this
-            makeKeyword('var', #{$ctx}), 
-            makeIdent('__self__', stx[0]),
-            makePunc('=', #{$ctx}), 
-            makeIdent('this', #{$ctx}), 
-            makePunc(';', #{$ctx})
+            makeKeyword('var', ctx), 
+            makeIdent('__self__', ctx),
+            makePunc('=', ctx), 
+            makeIdent('this', ctx), 
+            makePunc(';', ctx)
 
             
         ].concat(res);
@@ -77,7 +78,7 @@ macro clsSuper {
                             var args = n;
                             var pre = [makeIdent('__self__', stx[0])];
                             if(args.token.inner.length) {
-                                pre.push(makePunc(',', #{$ctx}));
+                                pre.push(makePunc(',', stx[0]));
                             }
                             args.token.inner = pre.concat(args.token.inner);
                             var refstx = withSyntax($args = [args]) {
