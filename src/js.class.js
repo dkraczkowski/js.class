@@ -3,7 +3,7 @@
  * Copyright (C) 2011 by crac <![[dawid.kraczkowski[at]gmail[dot]com]]>
  * Thanks for Hardy Keppler<![[Keppler.H[at]online.de]]> for shortened version
  * Thanks for Leonardo Apiwan<![[https://github.com/homer0]]> for UMD wrapper
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -66,22 +66,24 @@
                         value: statics[prop]
                     });
                 } else {
-                    Object.defineProperty(fnc, prop, {
-                        get: function() {
-                            return statics[prop]
-                        },
-                        set: function(val) {
-                            statics[prop] = val;
-                        }
-                    });
-                    Object.defineProperty(fnc.prototype, prop, {
-                        get: function() {
-                            return statics[prop]
-                        },
-                        set: function(val) {
-                            statics[prop] = val;
-                        }
-                    });
+                    (function(property) {
+                        Object.defineProperty(fnc, property, {
+                            get: function() {
+                                return statics[property]
+                            },
+                            set: function(val) {
+                                statics[property] = val;
+                            }
+                        });
+                        Object.defineProperty(fnc.prototype, property, {
+                            get: function() {
+                                return statics[property]
+                            },
+                            set: function(val) {
+                                statics[property] = val;
+                            }
+                        });
+                    })(prop);
                 }
             }
         }

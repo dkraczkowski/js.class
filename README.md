@@ -378,6 +378,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.6.1
+Fixed bug with multiple statics
 ### 2.6.0
 Added base javascript macros
 ### 2.5.3

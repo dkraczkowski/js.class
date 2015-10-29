@@ -6,7 +6,6 @@ describe("Class test", function() {
             create: function() {
                 this.hungry = true;
                 this.thirsty = true;
-
             },
             eat: function() {
                 this.hungry = false;
@@ -16,11 +15,15 @@ describe("Class test", function() {
             }
         }).static({
             CONST_TEST: 'constTest',
-            staticTest: 'staticTest'
+            CONST_TEST_2: 'constTest2',
+            staticTest: 'staticTest',
+            staticTest2: 'staticTest2'
         });
 
         expect(Pet.CONST_TEST).toEqual('constTest');
+        expect(Pet.CONST_TEST_2).toEqual('constTest2');
         expect(Pet.staticTest).toEqual('staticTest');
+        expect(Pet.staticTest2).toEqual('staticTest2');
         Pet.CONST_TEST = 'fail';
         Pet.staticTest = 'pass';
         expect(Pet.CONST_TEST).toEqual('constTest');
