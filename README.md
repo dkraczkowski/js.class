@@ -159,6 +159,19 @@ var MyChildClass = MyClass.extend({
 });
 ```
 
+####ES6 syntax
+```js
+class MyClass {
+    myMethod() {
+    }
+}
+class MyChildClass extends MyClass {
+    myMethod() {
+        super();//this will call MyClass#myMethod
+    }
+}
+```
+
 ###Statics and constans
 
 > Constans will not work in ie >=8 due to lack of Object.defineProperty support
