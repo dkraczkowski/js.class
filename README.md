@@ -101,7 +101,7 @@ class MyClass {
 
 ###Getters/Setters
 
-> Getters/Setters will not work in ie >=8 due to lack of Object.defineProperty support
+> Getters/Setters will not work in ie < 8 due to lack of Object.defineProperty support
 
 ```js
 var MyClass = JSClass({
