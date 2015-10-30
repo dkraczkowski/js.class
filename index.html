@@ -1,51 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
     <title>JS.Class by dkraczkowski</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-    <a id="forkme_banner" href="https://github.com/dkraczkowski/js.class">View on GitHub</a>
-    <div class="shell">
-
+    <div class="wrapper">
       <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>JS.Class</h1>
-            <h2>Javascript Class OOP library</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
+        <h1>JS.Class</h1>
+        <p>Javascript Class OOP library</p>
+
+        <p class="view"><a href="https://github.com/dkraczkowski/js.class">View the Project on GitHub <small>dkraczkowski/js.class</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dkraczkowski/js.class/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dkraczkowski/js.class/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dkraczkowski/js.class">View On <strong>GitHub</strong></a></li>
+        </ul>
       </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/dkraczkowski/js.class/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/dkraczkowski/js.class/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
+      <section>
         <h1>
 <a id="jsclass-" class="anchor" href="#jsclass-" aria-hidden="true"><span class="octicon octicon-link"></span></a>js.class <a href="https://travis-ci.org/dkraczkowski/js.class"><img src="https://travis-ci.org/dkraczkowski/js.class.svg?branch=master" alt="Build Status"></a>
 </h1>
@@ -85,43 +67,43 @@ var MyClass = Class({
 <h5>
 <a id="normal-version" class="anchor" href="#normal-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal version</h5>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>dist/browser/class.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
-<span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s2"><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({</span>
-<span class="pl-s2">    <span class="pl-en">myMethod</span>: <span class="pl-st">function</span>() {} <span class="pl-c">//your method declaration</span></span>
-<span class="pl-s2">});</span>
-<span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>dist/browser/class.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({</span>
+<span class="pl-s1">    <span class="pl-en">myMethod</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {} <span class="pl-c">//your method declaration</span></span>
+<span class="pl-s1">});</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
 
 <h5>
 <a id="no-conflict-version" class="anchor" href="#no-conflict-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>No conflict version:</h5>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>dist/browser/js.class-noconflict.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
-<span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s2"><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> JSClass({</span>
-<span class="pl-s2">    <span class="pl-en">myMethod</span>: <span class="pl-st">function</span>() {} <span class="pl-c">//your method declaration</span></span>
-<span class="pl-s2">});</span>
-<span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>dist/browser/js.class-noconflict.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> JSClass({</span>
+<span class="pl-s1">    <span class="pl-en">myMethod</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {} <span class="pl-c">//your method declaration</span></span>
+<span class="pl-s1">});</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
 
 <h3>
 <a id="class-declaration" class="anchor" href="#class-declaration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Class declaration</h3>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
-    <span class="pl-en">myMethod</span>: <span class="pl-st">function</span>() {} <span class="pl-c">//your method declaration</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({
+    <span class="pl-en">myMethod</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {} <span class="pl-c">//your method declaration</span>
 });</pre></div>
 
 <h3>
 <a id="constructor-pattern" class="anchor" href="#constructor-pattern" aria-hidden="true"><span class="octicon octicon-link"></span></a>Constructor pattern</h3>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
-    <span class="pl-en">create</span>: <span class="pl-st">function</span>(<span class="pl-vpf">param1</span>, <span class="pl-vpf">param2</span>) {<span class="pl-c">//this will be called with new keyword</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({
+    <span class="pl-en">create</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">param1</span>, <span class="pl-smi">param2</span>) {<span class="pl-c">//this will be called with new keyword</span>
         <span class="pl-v">this</span>.param1 <span class="pl-k">=</span> param1;
         <span class="pl-v">this</span>.param2 <span class="pl-k">=</span> param2;
     }
 });
 
-<span class="pl-s">var</span> instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyClass</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>);
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(instance.param1);<span class="pl-c">//1</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(instance.param2);<span class="pl-c">//2</span></pre></div>
+<span class="pl-k">var</span> instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyClass</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(instance.param1);<span class="pl-c">//1</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(instance.param2);<span class="pl-c">//2</span></pre></div>
 
 <h3>
 <a id="getterssetters" class="anchor" href="#getterssetters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getters/Setters</h3>
@@ -130,52 +112,52 @@ var MyClass = Class({
 <p>Getters/Setters will not work in ie &gt;=8 due to lack of Object.defineProperty support</p>
 </blockquote>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
-    <span class="pl-en">create</span>: <span class="pl-st">function</span>(<span class="pl-vpf">param1</span>, <span class="pl-vpf">param2</span>) {<span class="pl-c">//this will be called with new keyword</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({
+    <span class="pl-en">create</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">param1</span>, <span class="pl-smi">param2</span>) {<span class="pl-c">//this will be called with new keyword</span>
         <span class="pl-v">this</span>.param1 <span class="pl-k">=</span> param1;
         <span class="pl-v">this</span>.param2 <span class="pl-k">=</span> param2;
     },
     get<span class="pl-k">:</span> {
-        <span class="pl-en">allParams</span> <span class="pl-k">=</span> <span class="pl-st">function</span>() {
+        <span class="pl-en">allParams</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
             <span class="pl-k">return</span> [param1, param2];
         },
-        <span class="pl-en">evenParams</span> <span class="pl-k">=</span> <span class="pl-st">function</span>() {
+        <span class="pl-en">evenParams</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
             <span class="pl-k">return</span> [param1];
         },
-        <span class="pl-en">oddParams</span> <span class="pl-k">=</span> <span class="pl-st">function</span>() {
+        <span class="pl-en">oddParams</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
             <span class="pl-k">return</span> [param2];
         }
     },
     set<span class="pl-k">:</span> {
-        <span class="pl-en">allParams</span>: <span class="pl-st">function</span>(<span class="pl-vpf">value</span>) {
+        <span class="pl-en">allParams</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">value</span>) {
             <span class="pl-v">this</span>.param1 <span class="pl-k">=</span> value[<span class="pl-c1">0</span>];
             <span class="pl-v">this</span>.param2 <span class="pl-k">=</span> value[<span class="pl-c1">1</span>];
         }
     }
 });
-<span class="pl-s">var</span> instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyClass</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>);
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(instance.allParams);<span class="pl-c">//[1,2]</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(instance.oddParams);<span class="pl-c">//[2]</span>
+<span class="pl-k">var</span> instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyClass</span>(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(instance.allParams);<span class="pl-c">//[1,2]</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(instance.oddParams);<span class="pl-c">//[2]</span>
 
 instance.allParams <span class="pl-k">=</span> [<span class="pl-c1">3</span>,<span class="pl-c1">4</span>];
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(instance.allParams);<span class="pl-c">//[3,4]</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(instance.allParams);<span class="pl-c">//[3,4]</span></pre></div>
 
 <p><em>Check tests for more examples</em></p>
 
 <h3>
 <a id="inheritance" class="anchor" href="#inheritance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inheritance</h3>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({});</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({});</pre></div>
 
 <h3>
 <a id="invoking-overridden-methods" class="anchor" href="#invoking-overridden-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Invoking overridden methods</h3>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
-    <span class="pl-en">myMethod</span>: <span class="pl-st">function</span>() {};
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({
+    <span class="pl-en">myMethod</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {};
 });
-<span class="pl-s">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({
-    <span class="pl-en">myMethod</span>: <span class="pl-st">function</span>() {
-        MyClass.<span class="pl-sc">prototype</span>.myMethod.<span class="pl-s3">apply</span>(<span class="pl-v">this</span>, arguments);
+<span class="pl-k">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({
+    <span class="pl-en">myMethod</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        MyClass.<span class="pl-c1">prototype</span>.myMethod.<span class="pl-c1">apply</span>(<span class="pl-v">this</span>, arguments);
     }
 });</pre></div>
 
@@ -188,23 +170,23 @@ instance.allParams <span class="pl-k">=</span> [<span class="pl-c1">3</span>,<sp
 
 <p>Static variables can be easy defined by usage of <code>static</code> function, which accepts literal object.</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> StaticExample <span class="pl-k">=</span> Class({
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> StaticExample <span class="pl-k">=</span> Class({
 }).static({
-    myStatic<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>myStatic<span class="pl-pds">'</span></span>
+    myStatic<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>myStatic<span class="pl-pds">'</span></span>
 });
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(StaticExample.myStatic);<span class="pl-c">//myStatic</span>
-StaticExample.myStatic <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>otherValue<span class="pl-pds">'</span></span>;
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(StaticExample.myStatic);<span class="pl-c">//otherValue</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(StaticExample.myStatic);<span class="pl-c">//myStatic</span>
+StaticExample.myStatic <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>otherValue<span class="pl-pds">'</span></span>;
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(StaticExample.myStatic);<span class="pl-c">//otherValue</span></pre></div>
 
 <p>If literal object will contain a key in uppercase js-class will treat a variable as a constans:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> ConstantExample <span class="pl-k">=</span> Class({
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> ConstantExample <span class="pl-k">=</span> Class({
 }).static({
-    MY_CONST<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>const<span class="pl-pds">'</span></span>
+    MY_CONST<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>const<span class="pl-pds">'</span></span>
 });
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(ConstantExample.MY_CONST);<span class="pl-c">//const</span>
-ConstantExample.MY_CONST <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>otherValue<span class="pl-pds">'</span></span>;
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(ConstantExample.MY_CONST);<span class="pl-c">//const</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(ConstantExample.MY_CONST);<span class="pl-c">//const</span>
+ConstantExample.MY_CONST <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>otherValue<span class="pl-pds">'</span></span>;
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(ConstantExample.MY_CONST);<span class="pl-c">//const</span></pre></div>
 
 <h3>
 <a id="mixins" class="anchor" href="#mixins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mixins</h3>
@@ -213,45 +195,45 @@ ConstantExample.MY_CONST <span class="pl-k">=</span> <span class="pl-s1"><span c
 Its really usefull strategy if you are going to follow DRY methodology.
 To define mixin we need to simply use <code>mixin</code> method:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Pet <span class="pl-k">=</span> Class({
-    <span class="pl-en">name</span>: <span class="pl-st">function</span>(<span class="pl-vpf">name</span>) {
-        <span class="pl-k">if</span> (<span class="pl-k">typeof</span> name <span class="pl-k">===</span> <span class="pl-s1"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span>) {
-            <span class="pl-k">return</span> <span class="pl-v">this</span>.<span class="pl-sc">name</span>;
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Pet <span class="pl-k">=</span> Class({
+    <span class="pl-en">name</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">name</span>) {
+        <span class="pl-k">if</span> (<span class="pl-k">typeof</span> name <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span>) {
+            <span class="pl-k">return</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span>;
         }
-        <span class="pl-v">this</span>.<span class="pl-sc">name</span> <span class="pl-k">=</span> name;
+        <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> name;
     }
 });
-<span class="pl-s">var</span> Animal <span class="pl-k">=</span> Class({
-    <span class="pl-en">eat</span>: <span class="pl-st">function</span>() {
+<span class="pl-k">var</span> Animal <span class="pl-k">=</span> Class({
+    <span class="pl-en">eat</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
         <span class="pl-v">this</span>.fed <span class="pl-k">=</span> <span class="pl-c1">true</span>;
     },
-    <span class="pl-en">drink</span>: <span class="pl-st">function</span>() {
+    <span class="pl-en">drink</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
         <span class="pl-v">this</span>.drunk <span class="pl-k">=</span> <span class="pl-c1">true</span>;
     }
 });
-<span class="pl-s">var</span> Dog <span class="pl-k">=</span> Class({
+<span class="pl-k">var</span> Dog <span class="pl-k">=</span> Class({
 }).mixin(Pet, Animal);
-<span class="pl-s">var</span> pluto <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>();
+<span class="pl-k">var</span> pluto <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>();
 pluto.eat();
-pluto.<span class="pl-sc">name</span>(<span class="pl-s1"><span class="pl-pds">'</span>pluto<span class="pl-pds">'</span></span>);
+pluto.<span class="pl-c1">name</span>(<span class="pl-s"><span class="pl-pds">'</span>pluto<span class="pl-pds">'</span></span>);
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.<span class="pl-sc">name</span>());<span class="pl-c">//pluto</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.fed);<span class="pl-c">//true</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.<span class="pl-c1">name</span>());<span class="pl-c">//pluto</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.fed);<span class="pl-c">//true</span></pre></div>
 
 <h3>
 <a id="singleton" class="anchor" href="#singleton" aria-hidden="true"><span class="octicon octicon-link"></span></a>Singleton</h3>
 
 <p>In order to create singleton class set <code>singleton</code> property to true, eg.:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Singleton <span class="pl-k">=</span> Class({
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Singleton <span class="pl-k">=</span> Class({
     singleton<span class="pl-k">:</span> <span class="pl-c1">true</span>,
-    <span class="pl-en">doA</span>: <span class="pl-st">function</span>() {
-        <span class="pl-k">return</span> <span class="pl-s1"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>;
+    <span class="pl-en">doA</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>;
     }
 });
 
-<span class="pl-s">var</span> p1 <span class="pl-k">=</span> Singleton.instance();
-<span class="pl-s">var</span> p2 <span class="pl-k">=</span> Singleton.instance();
+<span class="pl-k">var</span> p1 <span class="pl-k">=</span> Singleton.instance();
+<span class="pl-k">var</span> p2 <span class="pl-k">=</span> Singleton.instance();
 
 p1 <span class="pl-k">===</span> p2;<span class="pl-c">//true</span>
 
@@ -263,30 +245,30 @@ p1 <span class="pl-k">===</span> p2;<span class="pl-c">//true</span>
 <p>js.class provides handy <code>typeOf</code> method in every instance of class,
 the method allows you to determine whather object is a mixin of given class:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> pluto <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>();
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> pluto <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dog</span>();
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.typeOf(Dog));<span class="pl-c">//true</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.typeOf(Animal));<span class="pl-c">//true</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.typeOf(Pet));<span class="pl-c">//true</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(pluto.typeOf(MyClass));<span class="pl-c">//false</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.typeOf(Dog));<span class="pl-c">//true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.typeOf(Animal));<span class="pl-c">//true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.typeOf(Pet));<span class="pl-c">//true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pluto.typeOf(MyClass));<span class="pl-c">//false</span></pre></div>
 
 <h1>
 <a id="instance-of-support" class="anchor" href="#instance-of-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instance of support</h1>
 
 <p>js.class does support <code>instanceof</code> operator. Consider the following example:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-s">var</span> MyClass <span class="pl-k">=</span> Class({
-    <span class="pl-en">create</span>: <span class="pl-st">function</span>(<span class="pl-vpf">param1</span>, <span class="pl-vpf">param2</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Class({
+    <span class="pl-en">create</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">param1</span>, <span class="pl-smi">param2</span>) {
         <span class="pl-v">this</span>.param1 <span class="pl-k">=</span> param1;
         <span class="pl-v">this</span>.param2 <span class="pl-k">=</span> param2;
     }
 });
-<span class="pl-s">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({});
+<span class="pl-k">var</span> MyChildClass <span class="pl-k">=</span> MyClass.extend({});
 
-<span class="pl-s">var</span> t <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyChildClass</span>();
+<span class="pl-k">var</span> t <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyChildClass</span>();
 
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(t <span class="pl-k">instanceof</span> MyClass);<span class="pl-c">//true</span>
-<span class="pl-en">console</span><span class="pl-s3">.log</span>(t <span class="pl-k">instanceof</span> MyChildClass);<span class="pl-c">//true</span></pre></div>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(t <span class="pl-k">instanceof</span> MyClass);<span class="pl-c">//true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(t <span class="pl-k">instanceof</span> MyChildClass);<span class="pl-c">//true</span></pre></div>
 
 <h1>
 <a id="for-developers" class="anchor" href="#for-developers" aria-hidden="true"><span class="octicon octicon-link"></span></a>For Developers</h1>
@@ -395,21 +377,12 @@ advanced oop features <code>js.class</code> is a good choice.</p>
 
 <p>Removed behaviour which was copying consts/statics into children class</p>
       </section>
-
       <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/dkraczkowski">dkraczkowski</a> can be found on <a href="https://github.com/dkraczkowski/js.class">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+        <p>This project is maintained by <a href="https://github.com/dkraczkowski">dkraczkowski</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
   </body>
 </html>
