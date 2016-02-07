@@ -89,7 +89,7 @@ console.log(instance.param1);//1
 console.log(instance.param2);//2
 ```
 
-###Getting class constructor
+###Getting class
 
 ```js
 var MyClass = JSClass({});
