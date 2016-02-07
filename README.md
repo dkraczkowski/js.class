@@ -90,9 +90,12 @@ console.log(instance.param2);//2
 ```
 
 ###Getting class constructor
+
+```js
 var MyClass = JSClass({});
 var instance = new MyClass();
 console.log(instance.getClass() === MyClass);//true
+```
 
 ####ES6 syntax
 ```js
