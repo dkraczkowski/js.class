@@ -33,6 +33,8 @@ describe("Class test", function() {
         var dog = new Pet();
         expect(dog.CONST_TEST).toEqual('constTest');
         expect(dog.staticTest).toEqual('pass');
+        expect(dog.getClass().CONST_TEST).toEqual('constTest');
+        expect(dog.getClass().staticTest).toEqual('pass');
 
 
 

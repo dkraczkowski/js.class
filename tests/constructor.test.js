@@ -9,17 +9,21 @@ describe("Class tests", function() {
         var y = new B();
         var z = new C();
 
-        expect(x.constructor == A).toBeTruthy();
-        expect(y.constructor == B).toBeTruthy();
-        expect(z.constructor == C).toBeTruthy();
+        expect(x.constructor === A).toBeTruthy();
+        expect(y.constructor === B).toBeTruthy();
+        expect(z.constructor === C).toBeTruthy();
 
-        expect(x.constructor == B).toBeFalsy();
-        expect(y.constructor == C).toBeFalsy();
-        expect(z.constructor == A).toBeFalsy();
+        expect(x.constructor === B).toBeFalsy();
+        expect(y.constructor === C).toBeFalsy();
+        expect(z.constructor === A).toBeFalsy();
 
-        expect(x.constructor == C).toBeFalsy();
-        expect(y.constructor == A).toBeFalsy();
-        expect(z.constructor == B).toBeFalsy();
+        expect(x.constructor === C).toBeFalsy();
+        expect(y.constructor === A).toBeFalsy();
+        expect(z.constructor === B).toBeFalsy();
+
+        expect(x.getClass() === A).toBeTruthy();
+        expect(y.getClass() === B).toBeTruthy();
+        expect(z.getClass() === C).toBeTruthy();
 
 
 

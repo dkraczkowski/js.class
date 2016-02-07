@@ -89,6 +89,11 @@ console.log(instance.param1);//1
 console.log(instance.param2);//2
 ```
 
+###Getting class constructor
+var MyClass = JSClass({});
+var instance = new MyClass();
+console.log(instance.getClass() === MyClass);//true
+
 ####ES6 syntax
 ```js
 class MyClass {
@@ -391,6 +396,8 @@ advanced oop features `js.class` is a good choice.
 
 Version History
 ===============
+### 2.7.0
+Added `getClass` method
 ### 2.6.1
 Fixed bug with multiple statics
 ### 2.6.0

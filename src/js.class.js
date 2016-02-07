@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  *
  **/
- (function (root, factory) {
+(function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], factory);
@@ -35,14 +35,14 @@
     } else {
         // Browser globals (root is window)
         root.JSClass = factory();
-   }
+    }
 }(this, function () {
 
     var JSClass = (function() {
 
         function _rewriteStatics(fnc, statics) {
             for (var prop in statics) {
-                if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
+                if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' || prop === 'getClass' ) {
                     continue;
                 }
 
@@ -175,6 +175,11 @@
 
                     return false;
                 };
+
+                classPrototype.getClass = function() {
+                    return classConstructor;
+                };
+
                 if (typeof classBody === 'function') {
                     classBody = classBody();
                 }

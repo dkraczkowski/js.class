@@ -42,7 +42,7 @@
 
         function _rewriteStatics(fnc, statics) {
             for (var prop in statics) {
-                if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' ) {
+                if (prop === 'extend' || prop === 'static' || prop === 'typeOf' || prop === 'mixin' || prop === 'getClass' ) {
                     continue;
                 }
 
@@ -175,6 +175,11 @@
 
                     return false;
                 };
+
+                classPrototype.getClass = function() {
+                  return classConstructor;
+                };
+
                 if (typeof classBody === 'function') {
                     classBody = classBody();
                 }
