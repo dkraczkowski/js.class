@@ -222,7 +222,7 @@ var Pet = JSClass({
         this.name = name;
     }
 });
-var Animal = Class({
+var Animal = JSClass({
     eat: function() {
         this.fed = true;
     },
@@ -233,7 +233,7 @@ var Animal = Class({
 var Dog = JSClass({
 }).mixin(Pet, Animal);
 var pluto = new Dog();
-pluto.eat();
+pluto.drink();
 pluto.name('pluto');
 
 console.log(pluto.name());//pluto
