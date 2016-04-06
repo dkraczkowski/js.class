@@ -147,6 +147,17 @@
                         }
                     }
 
+                    // bind "this" for all methods
+                    for (var key in this.__proto__) {
+                        if (
+                               this.__proto__.hasOwnProperty(key)
+                            && typeof this.__proto__[key] === 'function'
+                            && key !== 'create'
+                        ) {
+                            this.__proto__[key] = this.__proto__[key].bind(this);
+                        }
+                    }
+
                     if (isSingleton && typeof this !== 'undefined') {
                         throw new Error('Singleton object cannot have more than one instance, call instance method instead');
                     }
