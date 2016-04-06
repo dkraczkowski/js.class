@@ -235,7 +235,7 @@
                     classConstructor.instance = function() {
                         if (!instance) {
                             isSingleton = false;
-                            instance = new classConstructor();
+                            instance = new ( Function.prototype.bind.apply( classConstructor, [null].concat(Array.prototype.slice.call(arguments))));
                             isSingleton = true;
                         }
                         return instance;
