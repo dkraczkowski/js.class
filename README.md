@@ -400,7 +400,7 @@ advanced oop features `js.class` is a good choice.
 Version History
 ===============
 ### 2.7.1
-Improved behaviour where static had to be called at the end of definition
+Improved behaviour where static had to be called at the end of class definition
 ### 2.7.0
 Added `getClass` method
 ### 2.6.1
