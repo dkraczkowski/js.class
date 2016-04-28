@@ -48,7 +48,7 @@
 
                 if (typeof statics[prop] === 'object' || typeof statics[prop] === 'function') {
                     fnc[prop] = statics[prop];
-                    return;
+                    continue;
                 }
 
                 //check if static is a constant
